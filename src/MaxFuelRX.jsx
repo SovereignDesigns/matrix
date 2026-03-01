@@ -1,28 +1,19 @@
-
 import { useState, useEffect, useRef, useCallback } from "react";
 import { gsap } from "gsap";
 import HeroVideo from "./assets/innovation.mp4";
 import HeroVideo1 from "./assets/beerlines2.mp4";
+import HeroVideo3 from "./assets/green-fuel.mp4";
 import HeroVideo2 from "./assets/new-engine.mp4";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import bottleImage from "./assets/pump.png";
 import sparkImage from "./assets/spark.png";
-import splashImage from "./assets/splash.png";
-import engineImage from "./assets/engine.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
 // ─── Constants ────────────────────────────────────────────────────────────────
-const IMG_PAST =
-  "https://images.ctfassets.net/53l6u5v24bqr/62r2Oi2rC5ReXcSzBonIld/c8a4d85796ffcd37ec01a8d2f01c6b43/AMF1_X_GLENFIDDICH_2025_9.jpg";
-const IMG_FUTURE =
-  "https://images.ctfassets.net/53l6u5v24bqr/1CC5DZRnbyOkl9BFByuj8q/380c99d75ca180f7e5bf9d3eaebcb791/AMR25_SHOT6_1x1__2_.jpg";
-const IMG_16YO =
-  "https://images.ctfassets.net/53l6u5v24bqr/2Xw8nFm72Pq1cQH8M5nkd8/57d8e477e20ca03f20da8e01e3aaa2a1/16.jpg";
-const IMG_19YO =
-  "https://images.ctfassets.net/53l6u5v24bqr/5mc3XjZIPySAjD0AWdzNYA/8912370269859d7e8878f4a3bdd253a0/19.jpg";
 const IMG_AMR26 =
   "https://images.ctfassets.net/53l6u5v24bqr/6NZQ56rJT4rMtqXj84ySIl/fda0d6b5a3d3bcbd8dfe51bb53e7451a/v2AMR03338-2__2_.jpg";
+const IMG_19YO =
+  "https://images.ctfassets.net/53l6u5v24bqr/5mc3XjZIPySAjD0AWdzNYA/8912370269859d7e8878f4a3bdd253a0/19.jpg";
 
 const TIMELINE_TABS = ["Past", "Present", "Future"];
 const NEWSLETTER_BENEFITS = [
@@ -103,7 +94,10 @@ const GLOBAL_STYLES = `
     --f1-shadow:       0 0 5.2px 0 rgb(0 0 0/8%), 0 3.335px 3.335px 0 rgb(0 0 0/7%);
     --border-radius-1x: 0.125rem;
     --border-radius-2x: 0.1875rem;
-    --page-margin:      1.5rem;
+
+    /* Responsive page margin */
+    --page-margin: clamp(1rem, 4vw, 3rem);
+
     --nav-height:       4rem;
     --z-nav:            6;
     --z-timeline-nav:   5;
@@ -131,11 +125,12 @@ const GLOBAL_STYLES = `
   /* ── Buttons ── */
   .am-btn {
     display: inline-flex; align-items: center; justify-content: center;
-    height: 2.125rem; padding: 0.75rem 2rem 0.69rem;
-    font-family: var(--font-agrandir); font-size: 0.625rem; font-weight: 400;
+    height: 2.125rem; padding: 0.75rem clamp(1rem, 3vw, 2rem) 0.69rem;
+    font-family: var(--font-agrandir); font-size: clamp(0.55rem, 1.2vw, 0.625rem); font-weight: 400;
     line-height: 100%; text-transform: uppercase; letter-spacing: 0.065rem;
     cursor: pointer; border: none; border-radius: 0.1875rem;
     transition: background-color 0.2s ease, opacity 0.2s ease, transform 0.1s ease;
+    white-space: nowrap;
   }
   .am-btn-dark  { color: #fff; background: #000; }
   .am-btn-dark:hover  { background: rgba(0,0,0,0.6); }
@@ -166,17 +161,14 @@ const GLOBAL_STYLES = `
   .am-nav-item-link:hover { opacity: 0.6; }
 
   /* ── Timeline nav  ── */
-  /* Background bar uses GSAP transform instead of CSS left; */
-  /* The nav pill starts invisible (GSAP sets autoAlpha on first scroll). */
   .am-timeline-nav-pill {
-    opacity: 0;           /* GSAP → autoAlpha:1 on first scroll */
+    opacity: 0;
     visibility: hidden;
   }
   .am-timeline-item {
     font-family: var(--font-flare); font-size: 0.75rem; font-weight: 400;
     line-height: 100%; text-transform: uppercase; letter-spacing: 0.0225rem;
   }
-  /* Active bar — transformed by GSAP */
   .am-timeline-bar {
     position: absolute;
     top: 0.21rem; left: 0.21rem;
@@ -196,29 +188,177 @@ const GLOBAL_STYLES = `
   .am-slider::-webkit-scrollbar { display: none; }
   .am-slider.is-dragging { cursor: grabbing; }
 
-  /* ── Homepage transition asset — ScollTrigger target ── */
+  /* ── Homepage transition asset ── */
   #homepage-transition-asset {
     position: relative; overflow: hidden;
     width: 100%; height: 100vh;
+    min-height: 500px;
   }
   #homepage-transition-asset-mask {
     position: absolute; inset: 0;
-    transform: scale(1.12);   /* GSAP scrub → scale(1) */
+    transform: scale(1.12);
     transform-origin: center center;
     will-change: transform;
   }
   #homepage-transition-asset-image-container {
     position: absolute; inset: 0;
-    transform: scale(1.08);   /* GSAP scrub → scale(1) */
+    transform: scale(1.08);
     transform-origin: center center;
     will-change: transform;
   }
 
+  /* ── Responsive: section spacing ── */
+  .am-section-margin { margin: clamp(4rem, 10vw, 13rem) 0; }
+  .am-section-padding { padding: clamp(4rem, 10vw, 13rem) 0; }
+
+  /* ── Responsive: card slider item widths ── */
+  .am-card-item {
+    flex-shrink: 0;
+    width: clamp(16rem, 80.36vw, 27.5vw);
+    cursor: pointer;
+  }
+
+  /* ── Responsive: free asset grid ── */
+  .am-asset-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(0.75rem, 2vw, 1.5rem);
+    padding: 0 var(--page-margin);
+    align-items: center;
+  }
+
+  /* ── Responsive: footer link groups ── */
+  .am-footer-link-groups {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(1.5rem, 4vw, 3.125rem);
+    margin-top: clamp(2rem, 5vw, 5rem);
+  }
+  .am-footer-link-group {
+    min-width: 8rem;
+    flex: 1 1 8rem;
+    max-width: 12rem;
+  }
+
+  /* ── Newsletter input row ── */
+  .am-newsletter-input-row {
+    display: inline-flex;
+    gap: 0.5rem;
+    align-items: center;
+    height: 2.5rem;
+    padding: 0 0.875rem 0 0.625rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 0.1875rem;
+    max-width: 100%;
+    width: 100%;
+  }
+  .am-newsletter-input {
+    background: none;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-family: var(--font-agrandir);
+    font-size: 0.625rem;
+    letter-spacing: 0.065rem;
+    text-transform: uppercase;
+    min-width: 0;
+    flex: 1;
+  }
+
+  /* ── Mobile-only / desktop-only ── */
   @media only screen and (max-width: 767px) {
     .am-hide-mobile  { display: none !important; }
+
+    /* Stack asset grids on mobile */
+    .am-asset-grid {
+      grid-template-columns: 1fr;
+    }
+    .am-asset-grid-reverse > :first-child {
+      order: 2;
+    }
+    .am-asset-grid-reverse > :last-child {
+      order: 1;
+    }
+
+    /* Full-width footer link groups on mobile */
+    .am-footer-link-group {
+      max-width: 100%;
+    }
+
+    /* Smaller hero text on mobile */
+    .am-hero-main-title {
+      font-size: clamp(2.5rem, 14vw, 5rem) !important;
+    }
+    .am-hero-sub-title {
+      font-size: clamp(1.75rem, 10vw, 3.5rem) !important;
+    }
+
+    /* Tighter slider gap */
+    .am-slider-gap { gap: 5vw !important; }
+
+    /* Smaller section-future content padding */
+    .am-future-content {
+      padding: 0 1rem 2rem !important;
+    }
+    .am-future-title {
+      font-size: clamp(0.9rem, 4vw, 1.2rem) !important;
+    }
+
+    /* Newsletter pill button fill width on tiny screens */
+    .am-newsletter-input-row {
+      flex-direction: column;
+      height: auto;
+      padding: 0.75rem;
+      gap: 0.75rem;
+    }
+    .am-newsletter-input {
+      width: 100%;
+    }
   }
+
   @media only screen and (min-width: 768px) {
     .am-hide-desktop { display: none !important; }
+  }
+
+  /* ── Medium screens (tablets 768-1023px) ── */
+  @media only screen and (min-width: 768px) and (max-width: 1023px) {
+    .am-card-item {
+      width: clamp(14rem, 45vw, 22rem);
+    }
+    .am-hero-main-title {
+      font-size: clamp(4rem, 10vw, 7rem) !important;
+    }
+    .am-hero-sub-title {
+      font-size: clamp(3rem, 7vw, 5rem) !important;
+    }
+  }
+
+  /* ── Large screens (1024px+) ── */
+  @media only screen and (min-width: 1024px) {
+    .am-card-item {
+      width: clamp(18rem, 27.5vw, 36rem);
+    }
+  }
+
+  /* ── Very large screens (1440px+) ── */
+  @media only screen and (min-width: 1440px) {
+    :root {
+      --page-margin: clamp(3rem, 5vw, 6rem);
+    }
+    .am-card-item {
+      width: clamp(20rem, 25vw, 30rem);
+    }
+  }
+
+  /* ── Tiny screens (< 375px) ── */
+  @media only screen and (max-width: 374px) {
+    .am-timeline-item {
+      width: 4.2rem !important;
+      font-size: 0.65rem !important;
+    }
+    .am-timeline-bar {
+      width: 4.2rem !important;
+    }
   }
 `;
 
@@ -294,7 +434,7 @@ const IconPlay = () => (
   </svg>
 );
 
-// ─── useDragScroll  (drag-to-scroll slider logic from layout-5ebb6801db75b5ff.js) ─
+// ─── useDragScroll ─────────────────────────────────────────────────────────────
 function useDragScroll() {
   const ref = useRef(null);
   const drag = useRef({ active: false, startX: 0, scrollLeft: 0 });
@@ -340,25 +480,21 @@ function useDragScroll() {
 // ─── Main component ───────────────────────────────────────────────────────────
 export default function MaxfuelRX() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState(1); // 0=Past, 1=Present, 2=Future
+  const [activeTab, setActiveTab] = useState(1);
   const [benefitIdx, setBenefitIdx] = useState(0);
 
-  // ── Refs for GSAP-powered timeline nav ────────────────────────────────────
-  // These mirror: backgroundBarRef (active bar), navRef (pill container), itemRefs[]
-  const navPillRef = useRef(null); // the white pill (autoAlpha)
-  const navBarRef = useRef(null); // dark green sliding bar (gsap.to for hover/active)
-  const itemRefs = useRef([]); // individual tab button refs
-  const posCache = useRef(new Map()); // position cache (cleared on resize)
+  const navPillRef = useRef(null);
+  const navBarRef = useRef(null);
+  const itemRefs = useRef([]);
+  const posCache = useRef(new Map());
   const hoverTimer = useRef(null);
-  const cycleTimer = useRef(null); // gsap.delayedCall handle
-  const activeTabRef = useRef(activeTab); // keep in sync for GSAP callbacks
+  const cycleTimer = useRef(null);
+  const activeTabRef = useRef(activeTab);
   activeTabRef.current = activeTab;
 
-  // ── Drag-to-scroll sliders ────────────────────────────────────────────────
   const slider1 = useDragScroll();
   const slider2 = useDragScroll();
 
-  // ── GTM siteDataLoaded on mount  (37804) ─────────────────────────────────
   useEffect(() => {
     pushDataLayer({
       event: "siteDataLoaded",
@@ -367,7 +503,6 @@ export default function MaxfuelRX() {
     });
   }, []);
 
-  // ── Body scroll lock when menu open ──────────────────────────────────────
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => {
@@ -375,7 +510,6 @@ export default function MaxfuelRX() {
     };
   }, [menuOpen]);
 
-  // ── Cycling newsletter benefit ────────────────────────────────────────────
   useEffect(() => {
     const id = setInterval(
       () => setBenefitIdx((i) => (i + 1) % NEWSLETTER_BENEFITS.length),
@@ -384,11 +518,6 @@ export default function MaxfuelRX() {
     return () => clearInterval(id);
   }, []);
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // GSAP helpers — mirror setActive / setHover / clearHover from template JS
-  // ─────────────────────────────────────────────────────────────────────────
-
-  /** Returns { x, width } of item at index, using cached values */
   const getBarPos = useCallback((index) => {
     if (posCache.current.has(index)) return posCache.current.get(index);
     const pill = navPillRef.current;
@@ -401,13 +530,11 @@ export default function MaxfuelRX() {
     return pos;
   }, []);
 
-  /** Instantly reposition bar to active tab (no animation) — gsap.set */
   const setActiveBar = useCallback(
     (index) => {
       const pos = getBarPos(index);
       if (!pos || !navBarRef.current) return;
       gsap.set(navBarRef.current, { x: pos.x, width: pos.width });
-      // Update data-active on all items
       itemRefs.current.forEach((el, i) => {
         if (el) el.dataset.active = i === index ? "true" : "false";
       });
@@ -415,7 +542,6 @@ export default function MaxfuelRX() {
     [getBarPos],
   );
 
-  /** Smoothly slide bar to hovered item — gsap.to (duration .33, power2.inOut) */
   const setHoverBar = useCallback(
     (index) => {
       const pos = getBarPos(index);
@@ -433,7 +559,6 @@ export default function MaxfuelRX() {
     [getBarPos],
   );
 
-  /** Return bar to active tab after hover ends */
   const clearHoverBar = useCallback(() => {
     itemRefs.current.forEach((el) => {
       if (el) el.dataset.target = "false";
@@ -448,14 +573,11 @@ export default function MaxfuelRX() {
     });
   }, [getBarPos]);
 
-  // ── Set active bar whenever activeTab changes ────────────────────────────
   useEffect(() => {
-    // Small rAF delay so DOM is painted before measuring
     const id = requestAnimationFrame(() => setActiveBar(activeTab));
     return () => cancelAnimationFrame(id);
   }, [activeTab, setActiveBar]);
 
-  // ── Resize → clear position cache → recalculate bar ─────────────────────
   useEffect(() => {
     const onResize = () => {
       posCache.current.clear();
@@ -465,19 +587,9 @@ export default function MaxfuelRX() {
     return () => window.removeEventListener("resize", onResize);
   }, [setActiveBar]);
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // useScroll equivalent  (6018-2291abea0eb9a32b.js → j class, scrollChange)
-  //
-  // Original behaviour:
-  //   e.first  → gsap.to(navRef, { autoAlpha: 1, duration: .7 })
-  //   e.xy[1] > innerHeight/4
-  //             → data-position-center = "false"
-  //   else      → data-position-center = "true"
-  // ─────────────────────────────────────────────────────────────────────────
   useEffect(() => {
     let isFirst = true;
     const pill = navPillRef.current;
-
     const onScroll = () => {
       if (isFirst) {
         isFirst = false;
@@ -488,25 +600,10 @@ export default function MaxfuelRX() {
         pill.dataset.positionCenter = pastQuarter ? "false" : "true";
       }
     };
-
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // ScrollTrigger — "homepage-transition-asset"  (template-99d0405c36d482df.js)
-  //
-  // Original:
-  //   trigger: "#homepage-transition-asset"
-  //   start:   "top-=200 top"
-  //   end:     "bottom bottom"
-  //   scrub:   0.2
-  //   animation: gsap.timeline()
-  //     .to("#homepage-transition-asset-mask",            { scale: 1 }, "0")
-  //     .to("#homepage-transition-asset-image-container", { scale: 1 }, "<")
-  //   onEnter:  anticipateCycle  (GSAP delayedCall 1s → push next tab)
-  //   onUpdate: progress > 0.9 → delayedCall(1, goNext); progress===0 → abortCycle
-  // ─────────────────────────────────────────────────────────────────────────
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: "power1.inOut" } });
     tl.to("#homepage-transition-asset-mask", { scale: 1 }, "0").to(
@@ -514,7 +611,6 @@ export default function MaxfuelRX() {
       { scale: 1 },
       "<",
     );
-
     const st = ScrollTrigger.create({
       trigger: "#homepage-transition-asset",
       start: "top-=200 top",
@@ -522,7 +618,6 @@ export default function MaxfuelRX() {
       scrub: 0.2,
       animation: tl,
       onEnter: () => {
-        // anticipateCycle — schedule next tab after 1 s (matches original delayedCall(1, …))
         if (cycleTimer.current) cycleTimer.current.kill();
         cycleTimer.current = gsap.delayedCall(1, () => {
           setActiveTab((t) => (t + 1) % TIMELINE_TABS.length);
@@ -531,13 +626,11 @@ export default function MaxfuelRX() {
       onUpdate: (self) => {
         if (self.progress > 0.9) {
           if (!cycleTimer.current || cycleTimer.current.progress() === 1) {
-            // Re-arm if not already running
             cycleTimer.current = gsap.delayedCall(1, () => {
               setActiveTab((t) => (t + 1) % TIMELINE_TABS.length);
             });
           }
         } else if (self.progress === 0) {
-          // abortCycle
           if (cycleTimer.current) {
             cycleTimer.current.kill();
             cycleTimer.current = null;
@@ -545,7 +638,6 @@ export default function MaxfuelRX() {
         }
       },
     });
-
     return () => {
       st.kill();
       tl.kill();
@@ -553,15 +645,10 @@ export default function MaxfuelRX() {
     };
   }, []);
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // Section-based ScrollTrigger — update activeTab as each section enters view
-  // (mirrors the pathname-based logic in the original; here it's scroll-based)
-  // ─────────────────────────────────────────────────────────────────────────
   useEffect(() => {
-    // Map: [selector, tabIndex]
     const sections = [
       ["#section-past", 0],
-      ["#homepage-transition-asset", 1], // Present = hero
+      ["#homepage-transition-asset", 1],
       ["#section-future", 2],
     ];
     const triggers = sections.map(([sel, i]) =>
@@ -576,7 +663,6 @@ export default function MaxfuelRX() {
     return () => triggers.forEach((t) => t.kill());
   }, []);
 
-  // ─────────────────────────────────────────────────────────────────────────
   const bgGradient = `linear-gradient(0deg, ${COLORS.introBg}, ${COLORS.introBgTop})`;
 
   return (
@@ -592,9 +678,7 @@ export default function MaxfuelRX() {
           WebkitFontSmoothing: "antialiased",
         }}
       >
-        {/* ══════════════════════════════════════════════════════════════
-            OVERLAY NAV
-        ══════════════════════════════════════════════════════════════ */}
+        {/* ══ OVERLAY NAV ══ */}
         <nav
           style={{
             position: "fixed",
@@ -605,7 +689,6 @@ export default function MaxfuelRX() {
             pointerEvents: "none",
           }}
         >
-          {/* Hamburger pill */}
           <div
             style={{
               position: "relative",
@@ -644,7 +727,7 @@ export default function MaxfuelRX() {
           </div>
         </nav>
 
-        {/* Overlay nav panel */}
+        {/* ══ OVERLAY NAV PANEL ══ */}
         <div
           style={{
             position: "fixed",
@@ -656,7 +739,6 @@ export default function MaxfuelRX() {
             transition: `visibility 0s ${menuOpen ? "0s" : "0.35s"}`,
           }}
         >
-          {/* Backdrop */}
           <div
             onClick={() => setMenuOpen(false)}
             style={{
@@ -667,7 +749,6 @@ export default function MaxfuelRX() {
               transition: `opacity 0.35s ${easeSmooth}`,
             }}
           />
-          {/* Panel */}
           <div
             style={{
               position: "relative",
@@ -750,12 +831,7 @@ export default function MaxfuelRX() {
           </div>
         </div>
 
-        {/* ══════════════════════════════════════════════════════════════
-            TIMELINE NAV PILL  — F1TimelineNavigation
-            • Starts hidden (opacity:0 via .am-timeline-nav-pill)
-            • GSAP fades it in on first scroll (autoAlpha:1, duration:.7)
-            • Background bar moved by GSAP (setActive / setHover / clearHover)
-        ══════════════════════════════════════════════════════════════ */}
+        {/* ══ TIMELINE NAV PILL ══ */}
         <div
           style={{
             position: "fixed",
@@ -779,13 +855,10 @@ export default function MaxfuelRX() {
               background: "hsla(0, 0%, 100%, 0.95)",
               borderRadius: "var(--border-radius-1x)",
               boxShadow: f1Shadow,
-              position: "relative", // needed for bar absolute positioning
+              position: "relative",
             }}
           >
-            {/* GSAP-animated background bar */}
             <div ref={navBarRef} className="am-timeline-bar" />
-
-            {/* Tab buttons */}
             <div
               style={{
                 position: "relative",
@@ -848,18 +921,12 @@ export default function MaxfuelRX() {
           </div>
         </div>
 
-        {/* ══════════════════════════════════════════════════════════════
-            HERO  — #homepage-transition-asset (ScrollTrigger target)
-            Mask + image-container scale from 1.12 / 1.08 → 1 via scrub
-        ══════════════════════════════════════════════════════════════ */}
-        {/* id="homepage-transition-asset" is the ScrollTrigger target; section-present drives tab sync */}
+        {/* ══ HERO ══ */}
         <section id="homepage-transition-asset" data-section="section-present">
-          {/* The mask layer (scaled by GSAP ScrollTrigger) */}
           <div
             id="homepage-transition-asset-mask"
             style={{ background: bgGradient, position: "absolute", inset: 0 }}
           >
-            {/* Video background */}
             <video
               autoPlay
               muted
@@ -874,15 +941,12 @@ export default function MaxfuelRX() {
                 display: "block",
               }}
             >
-              <source src={ HeroVideo }  type="video/mp4" />
-              Your browser does not support the video tag.
+              <source src={HeroVideo} type="video/mp4" />
             </video>
-            {/* Image container (second scale layer) */}
             <div
               id="homepage-transition-asset-image-container"
               style={{ position: "absolute", inset: 0, overflow: "hidden" }}
             >
-              {/* Headline */}
               <div
                 style={{
                   position: "absolute",
@@ -894,33 +958,39 @@ export default function MaxfuelRX() {
                   justifyContent: "space-between",
                   width: "100%",
                   height: "100%",
-                  padding: "2rem 0",
+                  padding: "clamp(1.5rem, 4vw, 2rem) 0",
                 }}
               >
+                {/* Main headline */}
                 <div
+                  className="am-hero-main-title"
                   style={{
                     fontFamily: FONTS.flare,
-                    fontSize: "11vw",
+                    fontSize: "clamp(3rem, 11vw, 10rem)",
                     fontWeight: 400,
                     lineHeight: "90%",
                     color: COLORS.f1LimeGreen,
                     textAlign: "center",
                     textTransform: "uppercase",
                     letterSpacing: "-0.1rem",
+                    padding: "0 1rem",
                   }}
                 >
                   Visionary Fuel
                 </div>
+                {/* Sub headline */}
                 <div
+                  className="am-hero-sub-title"
                   style={{
                     fontFamily: FONTS.flare,
-                    fontSize: "8vw",
+                    fontSize: "clamp(2rem, 8vw, 7rem)",
                     fontWeight: 300,
                     lineHeight: "90%",
                     color: COLORS.f1LimeGreen,
                     textAlign: "center",
                     textTransform: "uppercase",
                     letterSpacing: "-0.1rem",
+                    padding: "0 1rem",
                   }}
                 >
                   Timeless Tomorrow
@@ -963,20 +1033,18 @@ export default function MaxfuelRX() {
           </div>
         </section>
 
-        {/* ══════════════════════════════════════════════════════════════
-            BLOCK TEXT
-        ══════════════════════════════════════════════════════════════ */}
+        {/* ══ BLOCK TEXT ══ */}
         <section
           style={{
             padding: "0 var(--page-margin)",
-            margin: "9rem 0",
+            margin: "clamp(4rem, 9vw, 9rem) 0",
             textAlign: "center",
           }}
         >
           <p
             style={{
               fontFamily: FONTS.flare,
-              fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)",
+              fontSize: "clamp(1rem, 2.5vw, 1.75rem)",
               fontWeight: 400,
               lineHeight: "140%",
               color: COLORS.f1GreenDark,
@@ -984,18 +1052,19 @@ export default function MaxfuelRX() {
               margin: "0 auto",
             }}
           >
-           MaxFuel RX achieves fuel optimisation through a unique, 6 pronged approach. It addresses issues that have long plagued the fuel industry while delivering results that are both immediate and long lasting.
+            MaxFuel RX achieves fuel optimisation through a unique, 6 pronged
+            approach. It addresses issues that have long plagued the fuel
+            industry while delivering results that are both immediate and long
+            lasting.
           </p>
         </section>
 
-        {/* ══════════════════════════════════════════════════════════════
-            CARD SLIDER — drag-to-scroll enabled
-        ══════════════════════════════════════════════════════════════ */}
+        {/* ══ CARD SLIDER ══ */}
         <section
           id="section-past"
           style={{
             position: "relative",
-            padding: "13rem 0",
+            padding: "clamp(4rem, 10vw, 13rem) 0",
             color: COLORS.white,
           }}
         >
@@ -1004,14 +1073,16 @@ export default function MaxfuelRX() {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              marginBottom: "3.5rem",
-              padding: "0 1.5rem",
+              marginBottom: "clamp(1.5rem, 4vw, 3.5rem)",
+              padding: "0 var(--page-margin)",
+              flexWrap: "wrap",
+              gap: "0.75rem",
             }}
           >
             <span
               style={{
                 fontFamily: FONTS.flare,
-                fontSize: "1.5rem",
+                fontSize: "clamp(1.1rem, 3vw, 1.5rem)",
                 fontWeight: 400,
                 lineHeight: "150%",
                 color: COLORS.white,
@@ -1034,26 +1105,21 @@ export default function MaxfuelRX() {
             </button>
           </div>
 
-          {/* Draggable slider */}
           <div
             ref={slider1.ref}
-            className="am-slider"
-            style={{ gap: "10.63vw", padding: "0 1.5rem 4rem", cursor: "grab" }}
+            className="am-slider am-slider-gap"
+            style={{
+              gap: "clamp(1rem, 5.3vw, 10.63vw)",
+              padding: "0 var(--page-margin) 4rem",
+              cursor: "grab",
+            }}
             onPointerDown={slider1.onPointerDown}
             onPointerMove={slider1.onPointerMove}
             onPointerUp={slider1.onPointerUp}
             onPointerLeave={slider1.onPointerLeave}
           >
             {CARDS.map((card, i) => (
-              <div
-                key={i}
-                className="am-card-link"
-                style={{
-                  flexShrink: 0,
-                  width: "min(80.36vw, 27.5vw)",
-                  cursor: "pointer",
-                }}
-              >
+              <div key={i} className="am-card-link am-card-item">
                 <div
                   style={{
                     position: "relative",
@@ -1125,7 +1191,7 @@ export default function MaxfuelRX() {
                       display: "block",
                       marginTop: "0.25rem",
                       fontFamily: FONTS.flare,
-                      fontSize: "1rem",
+                      fontSize: "clamp(0.85rem, 2vw, 1rem)",
                       fontWeight: 400,
                       lineHeight: "150%",
                       textTransform: "uppercase",
@@ -1140,19 +1206,12 @@ export default function MaxfuelRX() {
           </div>
         </section>
 
-        {/* ══════════════════════════════════════════════════════════════
-            FREE ASSET COMPOSITION — 16 Year Old
-        ══════════════════════════════════════════════════════════════ */}
-        <section style={{ position: "relative", margin: "13rem 0" }}>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gap: "1.5rem",
-              padding: "0 1.5rem",
-              alignItems: "center",
-            }}
-          >
+        {/* ══ FREE ASSET COMPOSITION — 16 Year Old ══ */}
+        <section
+          style={{ position: "relative", margin: "clamp(4rem, 10vw, 13rem) 0" }}
+        >
+          <div className="am-asset-grid">
+            {/* Left: video card */}
             <div
               style={{
                 position: "relative",
@@ -1179,8 +1238,7 @@ export default function MaxfuelRX() {
                   zIndex: 1001,
                 }}
               >
-                <source src={HeroVideo1} type="video/mp4" />
-                Your browser does not support the video tag.
+                <source src={HeroVideo3} type="video/mp4" />
               </video>
               <div
                 style={{
@@ -1195,7 +1253,7 @@ export default function MaxfuelRX() {
                   position: "relative",
                   zIndex: 2,
                   fontFamily: FONTS.agrandir,
-                  fontSize: "1rem",
+                  fontSize: "clamp(0.75rem, 2vw, 1rem)",
                   fontWeight: 400,
                   lineHeight: "100%",
                   color: COLORS.f1LimeGreen,
@@ -1232,6 +1290,7 @@ export default function MaxfuelRX() {
               </div>
             </div>
 
+            {/* Right: product */}
             <div
               style={{
                 display: "flex",
@@ -1244,7 +1303,7 @@ export default function MaxfuelRX() {
               <div
                 style={{
                   position: "relative",
-                  height: "26rem",
+                  height: "clamp(16rem, 40vw, 26rem)",
                   aspectRatio: "217 / 325",
                   overflow: "hidden",
                 }}
@@ -1278,7 +1337,7 @@ export default function MaxfuelRX() {
                 <p
                   style={{
                     fontFamily: FONTS.flare,
-                    fontSize: "1rem",
+                    fontSize: "clamp(0.85rem, 2vw, 1rem)",
                     fontWeight: 400,
                     lineHeight: "150%",
                     color: COLORS.black,
@@ -1305,16 +1364,14 @@ export default function MaxfuelRX() {
           </div>
         </section>
 
-        {/* ══════════════════════════════════════════════════════════════
-            NEWSLETTER TEASER
-        ══════════════════════════════════════════════════════════════ */}
+        {/* ══ NEWSLETTER TEASER ══ */}
         <section
           style={{
             position: "relative",
             display: "grid",
             placeItems: "center",
             padding: "0 var(--page-margin)",
-            margin: "13rem 0",
+            margin: "clamp(4rem, 10vw, 13rem) 0",
             textAlign: "center",
           }}
         >
@@ -1324,13 +1381,15 @@ export default function MaxfuelRX() {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
+              width: "100%",
+              maxWidth: "45rem",
             }}
           >
             <p
               style={{
                 paddingBottom: "1rem",
                 fontFamily: FONTS.agrandir,
-                fontSize: "0.875rem",
+                fontSize: "clamp(0.7rem, 1.5vw, 0.875rem)",
                 fontWeight: 400,
                 lineHeight: "100%",
                 textAlign: "center",
@@ -1345,12 +1404,12 @@ export default function MaxfuelRX() {
               style={{
                 margin: 0,
                 fontFamily: FONTS.flare,
-                fontSize: "clamp(2.875rem, 6vw, 5rem)",
+                fontSize: "clamp(2rem, 6vw, 5rem)",
                 fontWeight: 400,
                 lineHeight: "90%",
                 textAlign: "center",
                 textTransform: "uppercase",
-                letterSpacing: "clamp(-0.115rem, -0.5vw, -0.15rem)",
+                letterSpacing: "clamp(-0.08rem, -0.5vw, -0.15rem)",
                 color: COLORS.f1GreenDark,
               }}
             >
@@ -1363,6 +1422,7 @@ export default function MaxfuelRX() {
                 height: "2rem",
                 marginTop: "1rem",
                 overflow: "hidden",
+                width: "100%",
               }}
             >
               <span
@@ -1370,7 +1430,7 @@ export default function MaxfuelRX() {
                 className="am-benefit"
                 style={{
                   fontFamily: FONTS.agrandir,
-                  fontSize: "0.875rem",
+                  fontSize: "clamp(0.7rem, 1.5vw, 0.875rem)",
                   fontWeight: 400,
                   letterSpacing: "0.0438rem",
                   textTransform: "uppercase",
@@ -1384,19 +1444,19 @@ export default function MaxfuelRX() {
             </div>
             <p
               style={{
-                maxWidth: "45.0625rem",
+                maxWidth: "45ch",
                 marginTop: "1.75rem",
                 fontFamily: FONTS.flare,
-                fontSize: "0.75rem",
+                fontSize: "clamp(0.7rem, 1.5vw, 0.75rem)",
                 fontWeight: 400,
                 lineHeight: "145%",
                 textAlign: "center",
                 color: COLORS.f1GreenDark,
               }}
             >
-              Join the Maxfuel RX for exclusive access to limited
-              edition expressions, race experiences, and behind-the-scenes
-              content from our partnership with Aston Martin F1 Team.
+              Join the Maxfuel RX for exclusive access to limited edition
+              expressions, race experiences, and behind-the-scenes content from
+              our partnership with Aston Martin F1 Team.
             </p>
             <div style={{ margin: "2.02rem auto 0" }}>
               <button
@@ -1417,9 +1477,7 @@ export default function MaxfuelRX() {
           </div>
         </section>
 
-        {/* ══════════════════════════════════════════════════════════════
-            AMR26 FULL-HEIGHT SECTION  (section-future)
-        ══════════════════════════════════════════════════════════════ */}
+        {/* ══ AMR26 FULL-HEIGHT SECTION ══ */}
         <section
           id="section-future"
           style={{
@@ -1427,6 +1485,7 @@ export default function MaxfuelRX() {
             display: "grid",
             width: "100%",
             height: "100vh",
+            minHeight: "500px",
             placeItems: "center",
             overflow: "hidden",
           }}
@@ -1460,18 +1519,20 @@ export default function MaxfuelRX() {
             />
           </div>
           <div
+            className="am-future-content"
             style={{
               position: "relative",
               display: "flex",
               flexDirection: "column",
               justifyContent: "flex-end",
-              padding: "0 1.5rem 3rem",
+              padding: "0 var(--page-margin) 3rem",
               color: COLORS.white,
               width: "100%",
               height: "100%",
             }}
           >
             <h2
+              className="am-future-title"
               style={{
                 fontFamily: FONTS.flare,
                 fontSize: "clamp(1rem, 3vw, 1.5rem)",
@@ -1488,7 +1549,7 @@ export default function MaxfuelRX() {
             <p
               style={{
                 fontFamily: FONTS.flare,
-                fontSize: "0.75rem",
+                fontSize: "clamp(0.7rem, 1.5vw, 0.75rem)",
                 fontWeight: 400,
                 lineHeight: "145%",
                 color: "rgba(255,255,255,0.85)",
@@ -1516,19 +1577,12 @@ export default function MaxfuelRX() {
           </div>
         </section>
 
-        {/* ══════════════════════════════════════════════════════════════
-            FREE ASSET COMPOSITION — 19 Year Old (Inverted)
-        ══════════════════════════════════════════════════════════════ */}
-        <section style={{ position: "relative", margin: "13rem 0" }}>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gap: "1.5rem",
-              padding: "0 1.5rem",
-              alignItems: "center",
-            }}
-          >
+        {/* ══ FREE ASSET COMPOSITION — 19 Year Old ══ */}
+        <section
+          style={{ position: "relative", margin: "clamp(4rem, 10vw, 13rem) 0" }}
+        >
+          <div className="am-asset-grid am-asset-grid-reverse">
+            {/* Left: product (on mobile, rendered second via CSS order) */}
             <div
               style={{
                 display: "flex",
@@ -1541,7 +1595,7 @@ export default function MaxfuelRX() {
               <div
                 style={{
                   position: "relative",
-                  height: "26rem",
+                  height: "clamp(16rem, 40vw, 26rem)",
                   aspectRatio: "217 / 325",
                   overflow: "hidden",
                 }}
@@ -1587,7 +1641,7 @@ export default function MaxfuelRX() {
                 <p
                   style={{
                     fontFamily: FONTS.flare,
-                    fontSize: "1rem",
+                    fontSize: "clamp(0.85rem, 2vw, 1rem)",
                     fontWeight: 400,
                     lineHeight: "150%",
                     textTransform: "uppercase",
@@ -1614,6 +1668,8 @@ export default function MaxfuelRX() {
                 </div>
               </div>
             </div>
+
+            {/* Right: video card */}
             <div
               style={{
                 position: "relative",
@@ -1640,8 +1696,7 @@ export default function MaxfuelRX() {
                   zIndex: 1001,
                 }}
               >
-                <source src={HeroVideo2} type="video/mp4" />
-                Your browser does not support the video tag.
+                <source src={HeroVideo1} type="video/mp4" />
               </video>
               <div
                 style={{
@@ -1656,7 +1711,7 @@ export default function MaxfuelRX() {
                   position: "relative",
                   zIndex: 2,
                   fontFamily: FONTS.agrandir,
-                  fontSize: "1rem",
+                  fontSize: "clamp(0.75rem, 2vw, 1rem)",
                   color: COLORS.f1LimeGreen,
                   textAlign: "center",
                   textTransform: "uppercase",
@@ -1668,14 +1723,12 @@ export default function MaxfuelRX() {
           </div>
         </section>
 
-        {/* ══════════════════════════════════════════════════════════════
-            EVENTS SLIDER — drag-to-scroll enabled
-        ══════════════════════════════════════════════════════════════ */}
+        {/* ══ EVENTS SLIDER ══ */}
         <section
           style={{
             position: "relative",
             background: bgGradient,
-            padding: "13rem 0",
+            padding: "clamp(4rem, 10vw, 13rem) 0",
             color: COLORS.white,
           }}
         >
@@ -1684,14 +1737,16 @@ export default function MaxfuelRX() {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              marginBottom: "3.5rem",
-              padding: "0 1.5rem",
+              marginBottom: "clamp(1.5rem, 4vw, 3.5rem)",
+              padding: "0 var(--page-margin)",
+              flexWrap: "wrap",
+              gap: "0.75rem",
             }}
           >
             <span
               style={{
                 fontFamily: FONTS.flare,
-                fontSize: "1.5rem",
+                fontSize: "clamp(1.1rem, 3vw, 1.5rem)",
                 fontWeight: 400,
                 lineHeight: "150%",
                 color: COLORS.white,
@@ -1716,23 +1771,19 @@ export default function MaxfuelRX() {
 
           <div
             ref={slider2.ref}
-            className="am-slider"
-            style={{ gap: "10.63vw", padding: "0 1.5rem 4rem", cursor: "grab" }}
+            className="am-slider am-slider-gap"
+            style={{
+              gap: "clamp(1rem, 5.3vw, 10.63vw)",
+              padding: "0 var(--page-margin) 4rem",
+              cursor: "grab",
+            }}
             onPointerDown={slider2.onPointerDown}
             onPointerMove={slider2.onPointerMove}
             onPointerUp={slider2.onPointerUp}
             onPointerLeave={slider2.onPointerLeave}
           >
             {EVENTS.map((ev, i) => (
-              <div
-                key={i}
-                className="am-card-link"
-                style={{
-                  flexShrink: 0,
-                  width: "min(80.36vw, 27.5vw)",
-                  cursor: "pointer",
-                }}
-              >
+              <div key={i} className="am-card-link am-card-item">
                 <div
                   style={{
                     position: "relative",
@@ -1787,7 +1838,7 @@ export default function MaxfuelRX() {
                       display: "block",
                       marginTop: "0.25rem",
                       fontFamily: FONTS.flare,
-                      fontSize: "1rem",
+                      fontSize: "clamp(0.85rem, 2vw, 1rem)",
                       fontWeight: 400,
                       lineHeight: "150%",
                       textTransform: "uppercase",
@@ -1805,7 +1856,7 @@ export default function MaxfuelRX() {
         {/* ── Disclaimer ── */}
         <div
           style={{
-            padding: "2rem 1.5rem",
+            padding: "2rem var(--page-margin)",
             textAlign: "center",
             background: COLORS.grey100,
           }}
@@ -1826,33 +1877,27 @@ export default function MaxfuelRX() {
           </p>
         </div>
 
-        {/* ══════════════════════════════════════════════════════════════
-            FOOTER
-        ══════════════════════════════════════════════════════════════ */}
+        {/* ══ FOOTER ══ */}
         <footer
           style={{
             position: "relative",
             zIndex: "var(--z-footer)",
             display: "grid",
-            padding: "9.62rem 1.5rem 1.5rem",
+            padding: "clamp(4rem, 9vw, 9.62rem) var(--page-margin) 1.5rem",
             marginTop: 0,
             color: COLORS.white,
             background: bgGradient,
           }}
         >
           <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gap: "4rem",
-            }}
+            style={{ display: "grid", gridTemplateColumns: "1fr", gap: "4rem" }}
           >
             {/* Newsletter */}
-            <div style={{ gridColumn: "1 / -1" }}>
+            <div>
               <p
                 style={{
                   fontFamily: FONTS.flare,
-                  fontSize: "clamp(2rem, 4vw, 3rem)",
+                  fontSize: "clamp(1.5rem, 4vw, 3rem)",
                   fontWeight: 400,
                   lineHeight: "90%",
                   letterSpacing: "-0.09rem",
@@ -1867,7 +1912,7 @@ export default function MaxfuelRX() {
               <p
                 style={{
                   fontFamily: FONTS.agrandir,
-                  fontSize: "0.75rem",
+                  fontSize: "clamp(0.65rem, 1.5vw, 0.75rem)",
                   fontWeight: 400,
                   lineHeight: "140%",
                   letterSpacing: "0.0075rem",
@@ -1880,59 +1925,38 @@ export default function MaxfuelRX() {
                 Subscribe to receive exclusive updates about our Aston Martin F1
                 Team × Glenfiddich partnership, limited editions and more.
               </p>
-              <div
-                style={{
-                  display: "inline-flex",
-                  gap: "0.5rem",
-                  alignItems: "center",
-                  height: "2.5rem",
-                  padding: "0 0.875rem 0 0.625rem",
-                  border: "1px solid rgba(255,255,255,0.2)",
-                  borderRadius: "0.1875rem",
-                }}
-              >
-                <input
-                  placeholder="Your email"
-                  style={{
-                    background: "none",
-                    border: "none",
-                    outline: "none",
-                    color: COLORS.white,
-                    fontFamily: FONTS.agrandir,
-                    fontSize: "0.625rem",
-                    letterSpacing: "0.065rem",
-                    textTransform: "uppercase",
-                    width: "14rem",
-                  }}
-                />
-                <button
-                  className="am-btn am-btn-light"
-                  style={{ height: "1.75rem", padding: "0 1rem" }}
-                  onClick={() =>
-                    pushDataLayer({
-                      event: "ctaClicks",
-                      ga_event: {
-                        category: "Newsletter",
-                        action: "Subscribe Footer",
-                      },
-                    })
-                  }
-                >
-                  Subscribe
-                </button>
+              {/* Newsletter input — responsive row */}
+              <div style={{ maxWidth: "26rem" }}>
+                <div className="am-newsletter-input-row">
+                  <input
+                    placeholder="Your email"
+                    className="am-newsletter-input"
+                  />
+                  <button
+                    className="am-btn am-btn-light"
+                    style={{
+                      height: "1.75rem",
+                      padding: "0 1rem",
+                      flexShrink: 0,
+                    }}
+                    onClick={() =>
+                      pushDataLayer({
+                        event: "ctaClicks",
+                        ga_event: {
+                          category: "Newsletter",
+                          action: "Subscribe Footer",
+                        },
+                      })
+                    }
+                  >
+                    Subscribe
+                  </button>
+                </div>
               </div>
             </div>
 
             {/* Link groups */}
-            <div
-              style={{
-                gridColumn: "1 / -1",
-                display: "flex",
-                flexWrap: "wrap",
-                gap: "3.125rem",
-                marginTop: "5rem",
-              }}
-            >
+            <div className="am-footer-link-groups">
               {[
                 {
                   title: "Partnership",
@@ -1951,10 +1975,7 @@ export default function MaxfuelRX() {
                   links: ["Instagram", "Facebook", "Twitter / X", "YouTube"],
                 },
               ].map((group) => (
-                <div
-                  key={group.title}
-                  style={{ width: "100%", maxWidth: "12rem" }}
-                >
+                <div key={group.title} className="am-footer-link-group">
                   <p
                     style={{
                       fontFamily: FONTS.flare,
@@ -2012,13 +2033,13 @@ export default function MaxfuelRX() {
               display: "flex",
               justifyContent: "center",
               width: "100%",
-              margin: "8rem 0 9.32rem",
+              margin: "clamp(4rem, 8vw, 8rem) 0 clamp(4rem, 8vw, 9.32rem)",
             }}
           >
             <div
               style={{
                 fontFamily: FONTS.flare,
-                fontSize: "clamp(0.75rem, 2vw, 1.25rem)",
+                fontSize: "clamp(0.65rem, 2vw, 1.25rem)",
                 fontWeight: 400,
                 letterSpacing: "0.3rem",
                 textTransform: "uppercase",
@@ -2044,7 +2065,7 @@ export default function MaxfuelRX() {
           </div>
 
           {/* Footer lower */}
-          <div style={{ marginTop: "8rem" }}>
+          <div style={{ marginTop: "clamp(3rem, 6vw, 8rem)" }}>
             <p
               style={{
                 fontFamily: FONTS.agrandir,
@@ -2066,9 +2087,17 @@ export default function MaxfuelRX() {
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
+                flexWrap: "wrap",
+                gap: "0.75rem",
               }}
             >
-              <div style={{ display: "flex", gap: "1rem" }}>
+              <div
+                style={{
+                  display: "flex",
+                  gap: "clamp(0.5rem, 2vw, 1rem)",
+                  flexWrap: "wrap",
+                }}
+              >
                 {["Terms & Conditions", "Privacy Policy", "Cookie Policy"].map(
                   (item) => (
                     <a
