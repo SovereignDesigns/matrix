@@ -673,24 +673,13 @@ export default function GrandYozakura({
   masterImage,
   noteImages = [],
 } = {}) {
-  /* ── Tasting notes ──────────────────────────────────────────────────── */
   const [activeNote, setActiveNote] = useState(0);
   const [noteFading, setNoteFading] = useState(false);
-
-  /* ── Hero step machine (mirrors globals.js Observer + d()/g()) ────────
-     0 = opening scene
-     1 = title/bottle/teaser slide out
-     2 = long-description slides in
-     3 = release scroll lock → smooth-scroll to main content            */
   const [heroStep, setHeroStep] = useState(0);
-
-  /* ── Nav + UI state ─────────────────────────────────────────────────── */
   const [scrolled, setScrolled] = useState(false);
   const [ctaVisible, setCtaVisible] = useState(false);
   const [heroVisible, setHeroVisible] = useState(false);
   const [formVisible, setFormVisible] = useState(false);
-
-  /* ── Section entrance flags  (home.js ScrollTrigger equivalents) ─────── */
   const [introVisible, setIntroVisible] = useState(false);
   const [notesVisible, setNotesVisible] = useState(false);
   const [detailsVisible, setDetailsVisible] = useState(false);
@@ -698,7 +687,6 @@ export default function GrandYozakura({
   const [quoteVisible, setQuoteVisible] = useState(false);
   const [articlesVisible, setArticlesVisible] = useState(false);
 
-  /* ── DOM refs ────────────────────────────────────────────────────────── */
   const heroVideoRef = useRef(null);
   const heroRef = useRef(null);
   const mainRef = useRef(null);
@@ -2567,8 +2555,20 @@ const [bottleOffset, setBottleOffset] = useState(0);
         </section>
         {/* 3-panel image row */}
         <section className="gy-panels">
-          <div className="gy-panel gy-panel-left" />
-          <div className="gy-panel gy-panel-center" />
+          <div className="gy-panel gy-panel-left">
+            <img
+              src={bottleImage}
+              alt="Grand Yozakura bottle and box"
+              className="gy-panel-bottle-img"
+            />
+          </div>
+          <div className="gy-panel gy-panel-center">
+            <img
+              src={bottleImage}
+              alt="Grand Yozakura bottle and box"
+              className="gy-panel-bottle-img"
+            />
+          </div>
           <div className="gy-panel gy-panel-right">
             <img
               src={bottleImage}
