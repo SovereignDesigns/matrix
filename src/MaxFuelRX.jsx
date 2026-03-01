@@ -51,7 +51,7 @@ const EVENTS = [
 const NAV_LINKS = [
   { label: "Our Partnership", sub: "Story & Experiences" },
   { label: "Limited Editions", sub: "Expressions" },
-  { label: "Glenfiddich Collective", sub: "Sign Up" },
+  { label: "Maxfuel RX", sub: "Sign Up" },
 ];
 const COLORS = {
   black: "#000",
@@ -1349,7 +1349,7 @@ export default function AstonMartinGlenfiddich() {
                 color: COLORS.f1GreenDark,
               }}
             >
-              Glenfiddich Collective
+              Maxfuel RX
             </h2>
             <div
               style={{
@@ -1389,7 +1389,7 @@ export default function AstonMartinGlenfiddich() {
                 color: COLORS.f1GreenDark,
               }}
             >
-              Join the Glenfiddich Collective for exclusive access to limited
+              Join the Maxfuel RX for exclusive access to limited
               edition expressions, race experiences, and behind-the-scenes
               content from our partnership with Aston Martin F1 Team.
             </p>
