@@ -3,6 +3,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { gsap } from "gsap";
 import HeroVideo from "./assets/innovation.mp4";
 import HeroVideo1 from "./assets/beerlines2.mp4";
+import HeroVideo2 from "./assets/new-engine.mp4";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import bottleImage from "./assets/pump.png";
 import sparkImage from "./assets/spark.png";
@@ -31,9 +32,9 @@ const NEWSLETTER_BENEFITS = [
   "UNIQUE EXPERIENCES",
 ];
 const CARDS = [
-  { label: "Past", title: "A Partnership Forged in Racing DNA", img: bottleImage },
-  { label: "Present", title: "Iconic Together – 2025 Season", img: sparkImage },
-  { label: "Future", title: "The Next Chapter Begins", img: engineImage },
+  { label: "Past", title: "A Partnership Forged in Racing DNA", img: null },
+  { label: "Present", title: "Iconic Together – 2025 Season", img: null },
+  { label: "Future", title: "The Next Chapter Begins", img: null },
 ];
 const EVENTS = [
   {
@@ -337,7 +338,7 @@ function useDragScroll() {
 }
 
 // ─── Main component ───────────────────────────────────────────────────────────
-export default function AstonMartinGlenfiddich() {
+export default function MaxfuelRX() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState(1); // 0=Past, 1=Present, 2=Future
   const [benefitIdx, setBenefitIdx] = useState(0);
@@ -1624,17 +1625,36 @@ export default function AstonMartinGlenfiddich() {
                 overflow: "hidden",
               }}
             >
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  display: "block",
+                  zIndex: 1001,
+                }}
+              >
+                <source src={HeroVideo2} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
               <div
                 style={{
                   position: "absolute",
                   inset: 0,
                   background: `linear-gradient(160deg, ${COLORS.introBgTop}, ${COLORS.introBg})`,
+                  zIndex: 1,
                 }}
               />
               <div
                 style={{
                   position: "relative",
-                  zIndex: 1,
+                  zIndex: 2,
                   fontFamily: FONTS.agrandir,
                   fontSize: "1rem",
                   color: COLORS.f1LimeGreen,
