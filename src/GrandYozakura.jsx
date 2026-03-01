@@ -1751,14 +1751,14 @@ const [bottleOffset, setBottleOffset] = useState(0);
         .gy-tasting-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          row-gap: 60px;
-          column-gap: 8vw;
+          row-gap: 20px;
+          column-gap: 2vw;
         }
         .gy-tasting-note {}
         .gy-tasting-note-title {
           font-family: 'Arial', sans-serif;
-          font-size: clamp(48px, 8vw, 110px);
-          font-weight: 800;
+          font-size: clamp(16px, 4vw, 110px);
+          font-weight: 600;
           text-transform: uppercase;
           color: var(--white);
           line-height: .95;
@@ -2320,8 +2320,8 @@ const [bottleOffset, setBottleOffset] = useState(0);
 
           {/* Big CAPTURE / THE MOMENT at bottom */}
           <div className="gy-hero-tagline-big">
-            <span className="italic-line">Capture</span>
-            <span>The Moment</span>
+            <span className="italic-line">Matrix</span>
+            <span>MaxFuel RX</span>
           </div>
         </section>
 
@@ -2350,14 +2350,14 @@ const [bottleOffset, setBottleOffset] = useState(0);
   {/* Right light half */}
   <div className="gy-product-right">
     <div className="gy-product-info">
-      <p className="gy-product-age">29 Year Old</p>
+      <p className="gy-product-age">CRITICAL ASPECTS OF</p>
       <p className="gy-product-name">Max Fuel RX</p>
       <div className="gy-product-pills">
         <div className="gy-product-pill">
-          Toasted oak, creamy vanilla toffee and silky tannin.
+          MaxFuel RX achieves fuel optimisation through a unique, 6 pronged approach. It addresses issues that have long plagued the fuel industry while delivering results that are both immediate and long lasting.
         </div>
         <div className="gy-product-pill">
-          Grand Series Limited Edition
+          MaxFuel RX neutralises harmful acids that can corrode engine components over time. This not only prolongs the life of machinery but also reduces the environmental footprint of fuel consumption by decreasing the need for repairs and replacements.
         </div>
       </div>
     </div>
@@ -2405,8 +2405,8 @@ const [bottleOffset, setBottleOffset] = useState(0);
           )}
 
           <div className="gy-capture-text">
-            <span className="gy-capture-line1">Capture</span>
-            <span className="gy-capture-line2">The Moment</span>
+            <span className="gy-capture-line1">Neutralizing Acids</span>
+            <span className="gy-capture-line2">RX</span>
           </div>
         </section>
 
@@ -2430,18 +2430,18 @@ const [bottleOffset, setBottleOffset] = useState(0);
           {/* Text */}
           <div className="gy-magical-content">
             <h2 className="gy-magical-title">
-              Magical Moment
+             Decreasing 
               <br />
-              of Fleeting Beauty
+            Diesel Bug Growth
             </h2>
             <p className="gy-magical-body">
-              Matrix Petroleum Max Fuel RX, 'Cherry Blossom Viewing at
+             Diesel bug growth is a persistent issue that compromises fuel quality and engine performance.
               <br />
-              Night' in Japanese, is the magical moment of fleeting beauty
+              By preventing microbial contamination,
               <br />
-              when Japanese cherry blossoms are admired and celebrated
+              MaxFuel RX helps engines run cleaner and more efficiently, thereby further reducing
               <br />
-              under moonlight.
+              harmful emissions.
             </p>
           </div>
         </section>
@@ -2457,11 +2457,7 @@ const [bottleOffset, setBottleOffset] = useState(0);
             }`}
           >
             <p className="gy-limited-body">
-              This limited edition Matrix Petroleum is the first single malt
-              Scotch whisky finished in Japanese Ex-Awamori casks. This rare
-              whisky has spent 29 years maturing in American and Oak casks at
-              the Matrix Petroleum Distillery before being finished in rare
-              Japanese Awamori casks to give it an unforgettable taste.
+              Passively Cleaning Exhaust-Related Components - Over time exhaust systems accumulate residue that reduces their effectiveness in filtering harmful gases. MaxFuel RX passively cleans these components, ensuring that exhaust systems operate at peak efficiency thereby significantly reducing emissions.
             </p>
           </div>
 
@@ -2497,30 +2493,30 @@ const [bottleOffset, setBottleOffset] = useState(0);
            Active note title has blue highlight box behind it.
            ══════════════════════════════════════════════════════════════ */}
         <section className="gy-tasting" ref={notes}>
-          <span className="gy-tasting-label">The Tasting Notes</span>
+          <span className="gy-tasting-label">ASPECTS OF FUEL OPTIMIZATION</span>
           <div className="gy-tasting-grid">
             {[
               {
                 key: "colour",
-                title: "Colour",
+                title: "Neutralizing Acids",
                 short: "Deep Gold.",
                 desc: null,
               },
               {
                 key: "nose",
-                title: "Nose",
+                title: "Decreasing Diesel Bug Growth",
                 short: null,
                 desc: "Zesty, ripe fruits and caramelised almonds. Lovely rich oak notes with hints of cinnamon and a distinctive herbal zing.",
               },
               {
                 key: "taste",
-                title: "Taste",
+                title: "Increasing Fuel Combustibility",
                 short: null,
                 desc: "Indulgent layers of toasted oak, creamy vanilla toffee and silky tannin. Sporadic bursts of spice and sherbet lemons with crunchy green apple and warming earthy tones.",
               },
               {
                 key: "finish",
-                title: "Finish",
+                title: "Lubricating Engine Components",
                 short: null,
                 desc: "Long lasting oak.",
               },
@@ -2544,13 +2540,10 @@ const [bottleOffset, setBottleOffset] = useState(0);
         </section>
         <section className="gy-bodycopy">
           <p className="gy-bodycopy-text">
-            Glenfiddich Max Fuel RX, 'Cherry Blossom Viewing at Night' in
-            Japanese, is the magical moment of fleeting beauty when Japanese
-            cherry blossoms are admired and celebrated under moonlight. A
-            limited edition release 45.1% ABV single malt that is housed in an
-            elegant whisky box with Sakura imagery, and a Hanko stamp engraved
-            bespoke stopper, a cloth capsule with a poem that are included for a
-            complete gifting experience.
+           MaxFuel RX is an elite precision engineered fuel
+                            crafted to deeply cleanse and sustain your diesel engine’s performance over the
+                            long haul. Its advanced formula goes beyond standard fuels, ensuring continuous
+                            protection that maximises efficiency and longevity.
           </p>
         </section>
         {/* 3-panel image row */}
@@ -2579,13 +2572,12 @@ const [bottleOffset, setBottleOffset] = useState(0);
         </section>
   <section className="gy-bodycopy">
           <p className="gy-bodycopy-text">
-            Glenfiddich Max Fuel RX, 'Cherry Blossom Viewing at Night' in
-            Japanese, is the magical moment of fleeting beauty when Japanese
-            cherry blossoms are admired and celebrated under moonlight. A
-            limited edition release 45.1% ABV single malt that is housed in an
-            elegant whisky box with Sakura imagery, and a Hanko stamp engraved
-            bespoke stopper, a cloth capsule with a poem that are included for a
-            complete gifting experience.
+            The future is one where technology and
+                            sustainability
+                            are inextricably linked and MaxFuel RX is at the
+                            forefront of this evolution. The combination of fuel innovation and AI-powered
+                            monitoring allows for a
+                            holistic approach to both reducing pollution and improving fuel efficiency.
           </p>
         </section>
         <div className={`gy-cta-banner ${ctaVisible ? "visible" : ""}`}>
