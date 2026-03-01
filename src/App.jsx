@@ -1,7 +1,7 @@
-import GrandYozakura from './GrandYozakura'
+import MaxFuelRX from './MaxFuelRX'
 
 export default function App() {
-  return <GrandYozakura
+  return <MaxFuelRX
   heroVideo="/hero-video.mp4"
   bottleImage="/bottle.png"
   noteImages={[

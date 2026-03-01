@@ -142,7 +142,61 @@ function MegaNav({ scrolled, onRegisterClick }) {
 
         <div
           className={`gy-nav-logo-wrap ${scrolled ? "scrolled-hide" : ""}`}
-        ></div>
+        >
+         <svg
+  width="32"
+  height="38"
+  viewBox="0 0 8.4666668 10.054167"
+  version="1.1"
+  id="svg5"
+  xml:space="preserve"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g
+    id="layer1"
+    transform="matrix(0.15127533,0,0,0.15127533,-0.31690151,1.281596)"
+  >
+    <g
+      id="g385"
+      transform="matrix(1.5316404,0,0,1.5316404,21.156091,102.48569)"
+    >
+      <g transform="matrix(0.55233586,0,0,0.53415277,-36.645022,-84.644476)">
+        <path d="M 47.040001,37.599998 V 54.560001 L 62.080002,46.080002 Z" fill="currentColor" />
+      </g>
+      <g transform="matrix(0.55233586,0,0,0.53415277,-36.645022,-84.644476)">
+        <path d="m 92,46.080002 15.04,8.479999 V 37.599998 Z" fill="currentColor" />
+      </g>
+      <g transform="matrix(0.55233586,0,0,0.53415277,-36.645022,-84.644476)">
+        <path d="M 62.080002,81.599998 47.040001,90.080002 V 73.120003 Z" fill="currentColor" />
+      </g>
+      <g transform="matrix(0.55233586,0,0,0.53415277,-36.645022,-84.644476)">
+        <path d="m 76.959999,54.560001 -14.879997,8.48 V 46.080002 Z" fill="currentColor" />
+      </g>
+      <g transform="matrix(0.55233586,0,0,0.53415277,-36.645022,-84.644476)">
+        <path d="m 92,81.599998 15.04,-8.479995 v 16.959999 z" fill="currentColor" />
+      </g>
+      <g transform="matrix(0.55233586,0,0,0.53415277,-36.645022,-84.644476)">
+        <path d="M 92,63.040001 76.959999,71.519997 V 54.560001 Z" fill="currentColor" />
+      </g>
+      <g transform="matrix(0.55233586,0,0,0.53415277,-36.645022,-84.644476)">
+        <path d="m 62.080002,63.040001 14.879997,-8.48 v 16.959996 z" fill="currentColor" />
+      </g>
+      <g transform="matrix(0.55233586,0,0,0.53415277,-36.645022,-84.644476)">
+        <path d="M 76.959999,54.560001 92,63.040001 V 46.080002 Z" fill="currentColor" />
+      </g>
+      <g transform="matrix(0.55233586,0,0,0.53415277,-36.645022,-84.644476)">
+        <path d="m 92,63.040001 -15.040001,-8.48 v 16.959996 z" fill="currentColor" />
+      </g>
+      <g transform="matrix(0.55233586,0,0,0.53415277,-36.645022,-84.644476)">
+        <path d="M 47.040001,54.560001 62.080002,46.080002 V 63.040001 Z" fill="currentColor" />
+      </g>
+      <g transform="matrix(0.55233586,0,0,0.53415277,-36.645022,-84.644476)">
+        <path d="M 107.04,54.560001 92,46.080002 v 16.959999 z" fill="currentColor" />
+      </g>
+    </g>
+  </g>
+</svg>
+        </div>
 
         <div className="gy-nav-right">
           <button
@@ -622,7 +676,7 @@ function ArticlesSection() {
   );
 }
 
-export default function GrandYozakura({
+export default function MaxFuelRX({
   groupImage,
   bgImage,
   masterImage,
