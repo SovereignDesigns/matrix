@@ -20,7 +20,7 @@ const NAV_MENU = [
     id: "grand-series",
     label: "Grand Series",
     children: [
-      { label: "Grand Yozakura 29YO", href: "#" },
+      { label: "Max Fuel RX 29YO", href: "#" },
       { label: "Grande Couronne 26YO", href: "#" },
       { label: "Grand Cru 23YO", href: "#" },
       { label: "Grand Reserva 21YO", href: "#" },
@@ -55,7 +55,7 @@ const ARTICLES_BY_YEAR = {
     { title: "Brian Kinsman on 29 Years of Patience", date: "May 2024" },
   ],
   2023: [
-    { title: "Grand Yozakura Launch Event, Tokyo", date: "September 2023" },
+    { title: "Max Fuel RX Launch Event, Tokyo", date: "September 2023" },
     { title: "A First of Its Kind: Ex-Awamori Casks", date: "October 2023" },
     { title: "The Grand Series — Four Chapters", date: "November 2023" },
   ],
@@ -457,14 +457,14 @@ function RegisterForm({ visible, onClose }) {
             <div className="gy-form-ty-icon">夜桜</div>
             <h2>Thank you for your interest</h2>
             <p>
-              We'll be in touch about Grand Yozakura availability in your
+              We'll be in touch about Max Fuel RX availability in your
               region.
             </p>
           </div>
         ) : (
           <>
             <h2 className="gy-form-title">Register Interest</h2>
-            <p className="gy-form-subtitle">Grand Yozakura — Limited Edition</p>
+            <p className="gy-form-subtitle">Max Fuel RX — Limited Edition</p>
 
             {apiError && <div className="gy-form-error-msg">{apiError}</div>}
 
@@ -2351,7 +2351,7 @@ const [bottleOffset, setBottleOffset] = useState(0);
   <div className="gy-product-right">
     <div className="gy-product-info">
       <p className="gy-product-age">29 Year Old</p>
-      <p className="gy-product-name">Grand Yozakura</p>
+      <p className="gy-product-name">Max Fuel RX</p>
       <div className="gy-product-pills">
         <div className="gy-product-pill">
           Toasted oak, creamy vanilla toffee and silky tannin.
@@ -2367,7 +2367,7 @@ const [bottleOffset, setBottleOffset] = useState(0);
   {bottleImage && (
     <img
       src={bottleImage}
-      alt="Grand Yozakura bottle"
+      alt="Max Fuel RX bottle"
       className="gy-product-center-bottle"
       style={{
         transform: `translate(-50%, calc(-50% + ${bottleOffset}px))`,
@@ -2420,7 +2420,7 @@ const [bottleOffset, setBottleOffset] = useState(0);
           {bottleImage ? (
             <img
               src={bottleImage}
-              alt="Grand Yozakura bottle"
+              alt="Max Fuel RX bottle"
               className="gy-magical-bottle-img"
             />
           ) : (
@@ -2435,7 +2435,7 @@ const [bottleOffset, setBottleOffset] = useState(0);
               of Fleeting Beauty
             </h2>
             <p className="gy-magical-body">
-              Matrix Petroleum Grand Yozakura, 'Cherry Blossom Viewing at
+              Matrix Petroleum Max Fuel RX, 'Cherry Blossom Viewing at
               <br />
               Night' in Japanese, is the magical moment of fleeting beauty
               <br />
@@ -2473,14 +2473,14 @@ const [bottleOffset, setBottleOffset] = useState(0);
             {bottleImage ? (
               <img
                 src={bottleImage}
-                alt="Grand Yozakura bottle"
+                alt="Max Fuel RX bottle"
                 className="gy-limited-product-img"
               />
             ) : (
               <div className="gy-limited-product-placeholder">
                 Matrix Petroleum
                 <br />
-                Grand Yozakura
+                Max Fuel RX
                 <br />
                 29 Year Old
                 <br />
@@ -2544,7 +2544,7 @@ const [bottleOffset, setBottleOffset] = useState(0);
         </section>
         <section className="gy-bodycopy">
           <p className="gy-bodycopy-text">
-            Glenfiddich Grand Yozakura, 'Cherry Blossom Viewing at Night' in
+            Glenfiddich Max Fuel RX, 'Cherry Blossom Viewing at Night' in
             Japanese, is the magical moment of fleeting beauty when Japanese
             cherry blossoms are admired and celebrated under moonlight. A
             limited edition release 45.1% ABV single malt that is housed in an
@@ -2558,21 +2558,21 @@ const [bottleOffset, setBottleOffset] = useState(0);
           <div className="gy-panel gy-panel-left">
             <img
               src={bottleImage}
-              alt="Grand Yozakura bottle and box"
+              alt="Max Fuel RX bottle and box"
               className="gy-panel-bottle-img"
             />
           </div>
           <div className="gy-panel gy-panel-center">
             <img
               src={bottleImage}
-              alt="Grand Yozakura bottle and box"
+              alt="Max Fuel RX bottle and box"
               className="gy-panel-bottle-img"
             />
           </div>
           <div className="gy-panel gy-panel-right">
             <img
               src={bottleImage}
-              alt="Grand Yozakura bottle and box"
+              alt="Max Fuel RX bottle and box"
               className="gy-panel-bottle-img"
             />
           </div>
