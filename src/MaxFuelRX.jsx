@@ -4,6 +4,10 @@ import { gsap } from "gsap";
 import HeroVideo from "./assets/innovation.mp4";
 import HeroVideo1 from "./assets/beerlines2.mp4";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import bottleImage from "./assets/pump.png";
+import sparkImage from "./assets/spark.png";
+import splashImage from "./assets/splash.png";
+import engineImage from "./assets/engine.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,9 +31,9 @@ const NEWSLETTER_BENEFITS = [
   "UNIQUE EXPERIENCES",
 ];
 const CARDS = [
-  { label: "Past", title: "A Partnership Forged in Racing DNA", img: IMG_PAST },
-  { label: "Present", title: "Iconic Together – 2025 Season", img: null },
-  { label: "Future", title: "The Next Chapter Begins", img: IMG_FUTURE },
+  { label: "Past", title: "A Partnership Forged in Racing DNA", img: bottleImage },
+  { label: "Present", title: "Iconic Together – 2025 Season", img: sparkImage },
+  { label: "Future", title: "The Next Chapter Begins", img: engineImage },
 ];
 const EVENTS = [
   {
@@ -1245,7 +1249,7 @@ export default function AstonMartinGlenfiddich() {
                 }}
               >
                 <img
-                  src={IMG_16YO}
+                  src={sparkImage}
                   alt="Glenfiddich 16 Year Old"
                   style={{
                     width: "100%",
