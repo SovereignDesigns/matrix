@@ -2008,7 +2008,7 @@ const [bottleOffset, setBottleOffset] = useState(0);
         .gy-article-link:hover { border-color: var(--gold); }
 
         /* ── CTA BANNER */
-        .gy-cta-banner { position: fixed; bottom: 0; left: 0; right: 0; z-index: 50; background: linear-gradient(90deg, var(--navy-light), var(--navy)); border-top: 1px solid rgba(200,169,110,.3); padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; opacity: 0; transform: translateY(100%); transition: opacity .5s ease, transform .5s var(--ease-custom); pointer-events: none; }
+        .gy-cta-banner { position: fixed; bottom: 0; left: 0; right: 0; z-index: 50; background: transparent; border-top: 0px solid rgba(200,169,110,.3); padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; opacity: 0; transform: translateY(100%); transition: opacity .5s ease, transform .5s var(--ease-custom); pointer-events: none; }
         .gy-cta-banner.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
         .gy-cta-name { font-family: var(--display); font-size: 22px; font-weight: 300; font-style: italic; }
 
@@ -2577,7 +2577,17 @@ const [bottleOffset, setBottleOffset] = useState(0);
             />
           </div>
         </section>
-
+  <section className="gy-bodycopy">
+          <p className="gy-bodycopy-text">
+            Glenfiddich Max Fuel RX, 'Cherry Blossom Viewing at Night' in
+            Japanese, is the magical moment of fleeting beauty when Japanese
+            cherry blossoms are admired and celebrated under moonlight. A
+            limited edition release 45.1% ABV single malt that is housed in an
+            elegant whisky box with Sakura imagery, and a Hanko stamp engraved
+            bespoke stopper, a cloth capsule with a poem that are included for a
+            complete gifting experience.
+          </p>
+        </section>
         <div className={`gy-cta-banner ${ctaVisible ? "visible" : ""}`}>
           <p className="gy-cta-name">Maxfuel RX</p>
           <button className="gy-cta-btn" onClick={() => setFormVisible(true)}>
