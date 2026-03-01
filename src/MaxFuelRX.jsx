@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { gsap } from "gsap";
 import HeroVideo from "./assets/innovation.mp4";
+import HeroVideo1 from "./assets/beerlines2.mp4";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -52,8 +53,6 @@ const NAV_LINKS = [
   { label: "Limited Editions", sub: "Expressions" },
   { label: "Glenfiddich Collective", sub: "Sign Up" },
 ];
-
-// ─── Design tokens ────────────────────────────────────────────────────────────
 const COLORS = {
   black: "#000",
   white: "#fff",
@@ -75,7 +74,6 @@ const easeSnappy = "cubic-bezier(0.87, 0, 0.13, 1)";
 const easeSmooth = "cubic-bezier(0.45, 0.02, 0.09, 0.98)";
 const f1Shadow = "0 0 5.2px 0 rgb(0 0 0/8%), 0 3.335px 3.335px 0 rgb(0 0 0/7%)";
 
-// ─── GTM helper  (37804 – layout-5ebb6801db75b5ff.js) ─────────────────────────
 function pushDataLayer(payload) {
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push(payload);
@@ -1173,10 +1171,10 @@ export default function AstonMartinGlenfiddich() {
                   height: "100%",
                   objectFit: "cover",
                   display: "block",
-                  zIndex: 0,
+                  zIndex: 1001,
                 }}
               >
-                <source src={HeroVideo} type="video/mp4" />
+                <source src={HeroVideo1} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
               <div
