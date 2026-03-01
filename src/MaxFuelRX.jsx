@@ -941,7 +941,7 @@ export default function MaxFuelRX({
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Raleway:wght@200;300;400;500&display=swap');
 
         /* ── RESET & BASE ──────────────────────────────────── */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -954,8 +954,8 @@ export default function MaxFuelRX({
           --white:       #F5F0E8;
           --blush:       #E8A0A8;
           --muted:       rgba(245,240,232,0.5);
-          --display:     'Cormorant Garamond', serif;
-          --body:        'Josefin Sans', sans-serif;
+          --display:     'Tenor Sans', serif;
+          --body:        'Raleway', sans-serif;
           --ease-custom: cubic-bezier(0.098,0.496,0.504,1);
         }
 
