@@ -981,8 +981,7 @@ export default function AstonMartinGlenfiddich() {
               margin: "0 auto",
             }}
           >
-            Together we will write our next chapter, and set new standards by
-            blending the passion, precision and quality of two iconic brands.
+           MaxFuel RX achieves fuel optimisation through a unique, 6 pronged approach. It addresses issues that have long plagued the fuel industry while delivering results that are both immediate and long lasting.
           </p>
         </section>
 
@@ -993,7 +992,6 @@ export default function AstonMartinGlenfiddich() {
           id="section-past"
           style={{
             position: "relative",
-            background: bgGradient,
             padding: "13rem 0",
             color: COLORS.white,
           }}
@@ -1163,17 +1161,36 @@ export default function AstonMartinGlenfiddich() {
                 overflow: "hidden",
               }}
             >
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  display: "block",
+                  zIndex: 0,
+                }}
+              >
+                <source src={HeroVideo} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
               <div
                 style={{
                   position: "absolute",
                   inset: 0,
                   background: `linear-gradient(180deg, ${COLORS.introBgTop}, ${COLORS.introBg})`,
+                  zIndex: 1,
                 }}
               />
               <div
                 style={{
                   position: "relative",
-                  zIndex: 1,
+                  zIndex: 2,
                   fontFamily: FONTS.agrandir,
                   fontSize: "1rem",
                   fontWeight: 400,
@@ -1192,7 +1209,7 @@ export default function AstonMartinGlenfiddich() {
                   position: "absolute",
                   bottom: "1.5rem",
                   right: "1.5rem",
-                  zIndex: 2,
+                  zIndex: 3,
                 }}
               >
                 <button
