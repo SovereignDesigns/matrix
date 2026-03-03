@@ -691,7 +691,7 @@ export default function MaxfuelRX() {
             bottom: "1.25rem",
             left: 0,
             right: 0,
-            zIndex: "var(--z-timeline-nav)",
+            zIndex: 10001,
             display: "flex",
             justifyContent: "center",
             pointerEvents: "none",

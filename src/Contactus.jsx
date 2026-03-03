@@ -3,7 +3,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Maxfuel from "./Maxfuel";
 import AboutUs from './Aboutus'
-import HeroVideo from "./assets/innovation.mp4";
+import HeroVideo from "./assets/beerlines2.mp4";
 import Cheetah from "./assets/cheetah0.jpg";
 import MaxFuelRX from "./MaxfuelRX";
 gsap.registerPlugin(ScrollTrigger);

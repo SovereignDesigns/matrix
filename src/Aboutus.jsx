@@ -3,7 +3,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import MaxFuelRX from './MaxFuelRX'
 import Maxfuel from './Maxfuel'
-import HeroVideo from "./assets/innovation.mp4";
+import HeroVideo from "./assets/lines.mp4";
 import Cheetah from "./assets/cheetah0.jpg";
 import ContactUs from './Contactus'
 gsap.registerPlugin(ScrollTrigger);
@@ -70,9 +70,9 @@ const VALUES = [
 
 const TEAM = [
   { name: "Malvin Chiwanga", role: "Chief Formulation Scientist", tenure: "Founder" },
-  { name: "Priya Naidoo", role: "Head of R&D", tenure: "12 Years" },
-  { name: "Marcus Webb", role: "Director of Engineering", tenure: "9 Years" },
-  { name: "Lerato Khumalo", role: "Environmental Compliance", tenure: "7 Years" },
+  { name: "Martin Singh", role: "Head of R&D", tenure: "12 Years" },
+  { name: "Nathan Hill", role: "Director of Engineering", tenure: "9 Years" },
+  { name: "Amir Mirza", role: "Environmental Compliance", tenure: "7 Years" },
 ];
 
 const TIMELINE_EVENTS = [
