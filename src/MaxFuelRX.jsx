@@ -7,6 +7,7 @@ import HeroVideo3 from "./assets/green-fuel.mp4";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Cheetah from "./assets/cheetah0.jpg";
 import sparkImage from "./assets/spark.png";
+import theme5 from "./assets/Theme5.jpg";
 import FlareFont from "./assets/fonts/02a1216b6c704030-s.p.woff";
 import AgrandirFont from "./assets/fonts/161374021bd9bd1d-s.p.woff";
 import CaslonFont from "./assets/fonts/2be595c6b136c288-s.p.woff";
@@ -1469,7 +1470,7 @@ export default function MaxfuelRX() {
                 }}
               >
                 <img
-                  src={IMG_19YO}
+                  src={theme5}
                   alt="Matrix Petroleum 19 Year Old"
                   style={{
                     width: "100%",
