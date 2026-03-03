@@ -1,12 +1,14 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import MaxFuelRX from './MaxFuelRX'
 import Maxfuel from './Maxfuel'
+import AboutUs from './Aboutus'
+import ContactUs from './Contactus'
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<MaxFuelRX
+        <Route path="/maxfuelrx" element={<MaxFuelRX
           heroVideo="/hero-video.mp4"
           bottleImage="/bottle.png"
           noteImages={[
@@ -17,6 +19,8 @@ export default function App() {
           ]}
         />} />
         <Route path="/maxfuel" element={<Maxfuel />} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/contact-us" element={<ContactUs />} />
       </Routes>
     </BrowserRouter>
   )

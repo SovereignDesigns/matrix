@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { gsap } from "gsap";
 import Maxfuel from "./Maxfuel";
+import AboutUs from './Aboutus'
+import ContactUs from './Contactus'
 import HeroVideo from "./assets/innovation.mp4";
 import HeroVideo1 from "./assets/beerlines2.mp4";
 import HeroVideo2 from "./assets/new-engine.mp4";
@@ -71,9 +73,9 @@ const EVENTS = [
   },
 ];
 const NAV_LINKS = [
-  { label: "RX", sub: "Story & Experiences" },
-  { label: "Limited Editions", sub: "Expressions" },
-  { label: "Maxfuel RX", sub: "Sign Up" },
+  { label: "RX", sub: "Story & Experiences", href: "/maxfuel" },
+  { label: "About Us", sub: "Expressions", href: "/about-us" },
+  { label: "Contact Us", sub: "Sign Up", href: "/contact-us" },
 ];
 const COLORS = {
   black: "#000",
@@ -630,7 +632,7 @@ export default function MaxfuelRX() {
                 }}
               >
                 <a
-                  href="/maxfuel"
+                  href={link.href}
                   className="am-nav-item-link"
                   style={{
                     display: "flex",
