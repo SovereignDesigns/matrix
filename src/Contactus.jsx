@@ -199,7 +199,7 @@ const GLOBAL_STYLES = `
   .form-field-label {
     display: block;
     font-family: var(--font-agrandir);
-    font-size: 0.5rem;
+    font-size: 1.2rem;
     letter-spacing: 0.065rem;
     text-transform: uppercase;
     color: rgba(32,67,56,0.5);
@@ -866,7 +866,7 @@ export default function ContactUs() {
                   {office.city}
                 </div>
                 <div style={{
-                  fontFamily: FONTS.agrandir, fontSize: "0.5rem",
+                  fontFamily: FONTS.agrandir, fontSize: "1.0rem",
                   color: "rgba(255,255,255,0.4)", textTransform: "uppercase",
                   letterSpacing: "0.045rem", marginBottom: "2rem",
                 }}>
@@ -874,7 +874,7 @@ export default function ContactUs() {
                 </div>
                 {[office.address, office.phone, office.email].map((line, j) => (
                   <div key={j} style={{
-                    fontFamily: FONTS.agrandir, fontSize: "0.5625rem",
+                    fontFamily: FONTS.agrandir, fontSize: "0.8rem",
                     color: j === 0 ? "rgba(255,255,255,0.55)" : COLORS.f1LimeGreenDark,
                     textTransform: "uppercase", letterSpacing: "0.04rem",
                     lineHeight: "160%", marginBottom: j === 0 ? "1rem" : "0.35rem",

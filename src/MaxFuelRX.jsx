@@ -7,6 +7,11 @@ import HeroVideo from "./assets/innovation.mp4";
 import HeroVideo1 from "./assets/beerlines2.mp4";
 import HeroVideo2 from "./assets/new-engine.mp4";
 import HeroVideo3 from "./assets/green-fuel.mp4";
+import Video1 from "./assets/climat-2.mp4";
+import Video2 from "./assets/climat-5.mp4";
+import Video3 from "./assets/climat-6.mp4";
+import Team from "./assets/the~team.mp4";
+import Theteam from "./assets/the~team.mp4";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Cheetah from "./assets/cheetah0.jpg";
 import sparkImage from "./assets/spark.png";
@@ -527,7 +532,7 @@ export default function MaxfuelRX() {
           background: COLORS.white,
           color: COLORS.black,
           overflowX: "hidden",
-          maxWidth: "100vw",   // ← ADD THIS
+          maxWidth: "100vw",   
           WebkitFontSmoothing: "antialiased",
         }}
       >
@@ -585,7 +590,7 @@ export default function MaxfuelRX() {
           style={{
             position: "fixed",
             inset: 0,
-            zIndex: 12,
+            zIndex: 1002,
             padding: "0.5rem",
             pointerEvents: menuOpen ? "auto" : "none",
             visibility: menuOpen ? "visible" : "hidden",
@@ -969,7 +974,9 @@ export default function MaxfuelRX() {
             onPointerUp={slider1.onPointerUp}
             onPointerLeave={slider1.onPointerLeave}
           >
-            {CARDS.map((card, i) => (
+            {CARDS.map((card, i) => {
+              const videos = [Video1, Video2, Video3];
+              return (
               <div
                 key={i}
                 className="am-card-link"
@@ -988,42 +995,32 @@ export default function MaxfuelRX() {
                     overflow: "hidden",
                   }}
                 >
-                  {card.img ? (
-                    <img
-                      src={card.img}
-                      alt={card.title}
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        display: "block",
-                        pointerEvents: "none",
-                      }}
-                      draggable={false}
-                    />
-                  ) : (
-                    <div
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        background: `linear-gradient(180deg, ${COLORS.introBgTop}, ${COLORS.introBg})`,
-                      }}
-                    >
-                      <div
-                        style={{
-                          width: "3rem",
-                          height: "3rem",
-                          borderRadius: "50%",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                        }}
-                      />
-                    </div>
-                  )}
+                  <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      display: "block",
+                      zIndex: 1,
+                    }}
+                  >
+                    <source src={videos[i]} type="video/mp4" />
+                  </video>
+                  <div
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      background: `linear-gradient(180deg, ${COLORS.introBgTop}, ${COLORS.introBg})`,
+                      zIndex: 2,
+                      opacity: 0.6,
+                    }}
+                  />
                 </div>
                 <div style={{ marginTop: "1.5rem" }}>
                   <span
@@ -1058,7 +1055,7 @@ export default function MaxfuelRX() {
                   </span>
                 </div>
               </div>
-            ))}
+            )})}
             {/* Trailing spacer — ensures right padding is respected in overflow scroll */}
             <div
               style={{ flexShrink: 0, width: "1.5rem" }}
@@ -1646,7 +1643,9 @@ export default function MaxfuelRX() {
             onPointerUp={slider2.onPointerUp}
             onPointerLeave={slider2.onPointerLeave}
           >
-            {EVENTS.map((ev, i) => (
+            {EVENTS.map((ev, i) => {
+              const eventVideos = [Theteam, Theteam, Theteam];
+              return (
               <div
                 key={i}
                 className="am-card-link"
@@ -1668,17 +1667,35 @@ export default function MaxfuelRX() {
                     overflow: "hidden",
                   }}
                 >
+                  <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      display: "block",
+                      zIndex: 1001,
+                    }}
+                  >
+                    <source src={eventVideos[i]} type="video/mp4" />
+                  </video>
                   <div
                     style={{
                       position: "absolute",
                       inset: 0,
                       background: `linear-gradient(180deg, ${COLORS.introBgTop} ${i * 20}%, ${COLORS.introBg})`,
+                      zIndex: 2,
                     }}
                   />
                   <button
                     style={{
                       position: "relative",
-                      zIndex: 1,
+                      zIndex: 3,
                       background: "none",
                       border: "none",
                       cursor: "pointer",
@@ -1719,7 +1736,7 @@ export default function MaxfuelRX() {
                   </span>
                 </div>
               </div>
-            ))}
+            )})}
             {/* Trailing spacer — ensures right padding is respected in overflow scroll */}
             <div
               style={{ flexShrink: 0, width: "1.5rem" }}

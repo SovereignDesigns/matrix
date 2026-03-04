@@ -8,7 +8,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/maxfuelrx" element={<MaxFuelRX
+        <Route path="/" element={<MaxFuelRX
           heroVideo="/hero-video.mp4"
           bottleImage="/bottle.png"
           noteImages={[
