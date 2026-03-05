@@ -7,7 +7,7 @@ import HeroVideo from "./assets/innovation.mp4";
 import HeroVideo1 from "./assets/beerlines2.mp4";
 import HeroVideo2 from "./assets/new-engine.mp4";
 import HeroVideo3 from "./assets/green-fuel.mp4";
-import Video1 from "./assets/climat-2.mp4";
+import Video1 from "./assets/climat-4.mp4";
 import Video2 from "./assets/climat-5.mp4";
 import Video3 from "./assets/climat-6.mp4";
 import Team from "./assets/the~team.mp4";
@@ -1064,7 +1064,7 @@ export default function MaxfuelRX() {
           </div>
         </section>
 
-        {/* ── 16 YEAR OLD SECTION ── */}
+        {/* ── RX SECTION ── */}
         <section style={{ position: "relative", margin: "13rem 0" }}>
           <div
             style={{
@@ -1173,7 +1173,7 @@ export default function MaxfuelRX() {
               >
                 <img
                   src={sparkImage}
-                  alt="Matrix Petroleum 16 Year Old"
+                  alt="Matrix Petroleum RX"
                   style={{
                     width: "100%",
                     height: "100%",
@@ -1207,7 +1207,7 @@ export default function MaxfuelRX() {
                     textTransform: "uppercase",
                   }}
                 >
-                  16 Year Old
+                  RX
                 </p>
                 <div style={{ marginTop: "1rem" }}>
                   <button
@@ -1439,7 +1439,7 @@ export default function MaxfuelRX() {
           </div>
         </section>
 
-        {/* ── 19 YEAR OLD SECTION ── */}
+        {/* ── RX Benefits SECTION ── */}
         <section style={{ position: "relative", margin: "13rem 0" }}>
           <div
             style={{
@@ -1471,7 +1471,7 @@ export default function MaxfuelRX() {
               >
                 <img
                   src={theme5}
-                  alt="Matrix Petroleum 19 Year Old"
+                  alt="Matrix Petroleum RX Benefits"
                   style={{
                     width: "100%",
                     height: "100%",
@@ -1491,7 +1491,7 @@ export default function MaxfuelRX() {
                   }}
                 >
                   <span className="am-tag am-tag-green">Travel Exclusive</span>
-                  <span className="am-tag am-tag-green">19 Year Old</span>
+                  <span className="am-tag am-tag-green">RX Benefits</span>
                 </div>
                 <p
                   style={{
@@ -1517,7 +1517,7 @@ export default function MaxfuelRX() {
                     color: COLORS.black,
                   }}
                 >
-                  19 Year Old
+                  RX Benefits
                 </p>
                 <div style={{ marginTop: "1rem" }}>
                   <button

@@ -182,67 +182,67 @@ function SimpleNav({ menuOpen, setMenuOpen }) {
               "transform 0.35s " + easeSnappy + ", opacity 0.3s " + easeSmooth,
           }}
         >
-         {NAV_LINKS.map((link, i) => (
-              <div
-                key={i}
+          {NAV_LINKS.map((link, i) => (
+            <div
+              key={i}
+              style={{
+                display: "grid",
+                placeItems: "center",
+                width: "100%",
+                maxWidth: "25ch",
+                margin: "0 auto",
+              }}
+            >
+              <a
+                href={link.href}
+                className="am-nav-item-link"
                 style={{
-                  display: "grid",
-                  placeItems: "center",
-                  width: "100%",
-                  maxWidth: "25ch",
-                  margin: "0 auto",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.2rem",
+                  textDecoration: "none",
+                }}
+                onClick={() => {
+                  setMenuOpen(false);
+                  pushDataLayer({
+                    event: "ctaClicks",
+                    ga_event: {
+                      category: "Internal CTA Clicks",
+                      action: link.label,
+                    },
+                  });
                 }}
               >
-                <a
-                  href={link.href}
-                  className="am-nav-item-link"
+                <span
                   style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "0.2rem",
-                    textDecoration: "none",
-                  }}
-                  onClick={() => {
-                    setMenuOpen(false);
-                    pushDataLayer({
-                      event: "ctaClicks",
-                      ga_event: {
-                        category: "Internal CTA Clicks",
-                        action: link.label,
-                      },
-                    });
+                    fontFamily: FONTS.flare,
+                    fontSize: "0.875rem",
+                    fontWeight: 400,
+                    lineHeight: "140%",
+                    color: COLORS.black,
+                    textAlign: "center",
+                    textTransform: "uppercase",
                   }}
                 >
-                  <span
-                    style={{
-                      fontFamily: FONTS.flare,
-                      fontSize: "0.875rem",
-                      fontWeight: 400,
-                      lineHeight: "140%",
-                      color: COLORS.black,
-                      textAlign: "center",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    {link.label}
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: FONTS.agrandir,
-                      fontSize: "0.625rem",
-                      fontWeight: 400,
-                      lineHeight: "100%",
-                      color: COLORS.navSubtitle,
-                      textAlign: "center",
-                      textTransform: "uppercase",
-                      letterSpacing: "0.0312rem",
-                    }}
-                  >
-                    {link.sub}
-                  </span>
-                </a>
-              </div>
-            ))}
+                  {link.label}
+                </span>
+                <span
+                  style={{
+                    fontFamily: FONTS.agrandir,
+                    fontSize: "0.625rem",
+                    fontWeight: 400,
+                    lineHeight: "100%",
+                    color: COLORS.navSubtitle,
+                    textAlign: "center",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.0312rem",
+                  }}
+                >
+                  {link.sub}
+                </span>
+              </a>
+            </div>
+          ))}
         </div>
       </div>
     </>
@@ -714,7 +714,7 @@ export default function MaxFuelRX({
         .gy-product-left::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.5) 1px,transparent 1px);background-size:100px 100px;opacity:.35;pointer-events:none;}
         .gy-product-left-video{width:100%;height:100%;object-fit:cover;display:block;}
         .gy-product-right{background:#f5f4f0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:80px 6vw 60px;position:relative;overflow:hidden;min-height:50vh;}
-        .gy-product-info{position:relative;z-index:2;width:100%;text-align:left;padding-bottom:20px;}
+        .gy-product-info{position:relative;z-index:1002;width:100%;text-align:left;padding-bottom:20px;}
         .gy-product-age{font-family:var(--display);font-size:clamp(18px,3vw,56px);font-weight:300;color:#1a1a1a;letter-spacing:.04em;line-height:1;margin-bottom:8px;}
         .gy-product-name{font-family:var(--body);font-size:clamp(11px,1.2vw,15px);font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#1a1a1a;margin-bottom:32px;}
         .gy-product-pills{display:flex;flex-direction:column;gap:0;border:1px solid #c8a96e;}
@@ -1092,14 +1092,13 @@ export default function MaxFuelRX({
               <ul className="gy-footer-nav">
                 {[
                   "Home",
-                  "Our Collection",
+                  "Our Future",
                   "Our Story",
-                  "Distillery Tours",
-                  "Terms and Conditions of Sale",
+                  "Terms and Conditions",
                   "FAQs",
                   "Website Terms and Conditions",
                   "Privacy Policy and Cookies",
-                  "Matrix Petroleum x Aston Martin F1",
+                  "Matrix Petroleum",
                 ].map((l) => (
                   <li key={l}>
                     <a href="#">{l}</a>
@@ -1121,9 +1120,7 @@ export default function MaxFuelRX({
               <div>
                 <p className="gy-footer-section-label">Contact Us</p>
                 <ul className="gy-footer-contact">
-                  <li>
-                    <a href="#">Distillery Tours</a>
-                  </li>
+                 
                   <li>
                     <a href="#">General Enquiries</a>
                   </li>
@@ -1131,20 +1128,17 @@ export default function MaxFuelRX({
               </div>
               <div className="gy-footer-legal">
                 <p className="gy-footer-tagline">
-                  Skilfully Crafted. Drink Responsibly.
+                  Skilfully Engineered. Use Responsibly.
                 </p>
                 <p className="gy-footer-disclaimer">
-                  2024 William Grant and Sons Ltd Registered in Scotland.
-                  Registered Number SC131772
+                  2025 Matrix Petroleum Ltd. Registered in Scotland. Registered Number SC131772
                   <br />
-                  Registered Office: The Matrix Petroleum Distillery, Dufftown,
-                  Banffshire AB55 4DH
+                  Registered Office: The Matrix Petroleum Refinery, Dufftown, Banffshire AB55 4DH.
                   <br />
-                  This content is intended only for people who are of legal
-                  purchase age in their country. Do not forward to minors.
+                 This content is intended only for people who are of legal purchase age in their country. Do not forward to minors.
                 </p>
                 <p className="gy-footer-drinkaware">
-                  be <strong>drinkaware</strong>.co.uk
+                <strong>matrixpetroleum</strong>.com
                 </p>
               </div>
             </div>

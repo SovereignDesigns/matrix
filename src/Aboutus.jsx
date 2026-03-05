@@ -209,7 +209,7 @@ const IconArrowDown = () => (
 );
 
 const IconHamburger = ({ open }) => (
-  <svg width="30" height="14" viewBox="0 0 26 16" fill="none">
+  <svg width="30" height="14" viewBox="0 0 26 16" zIndex="1004" fill="none">
     {open ? (
       <>
         <line x1="1" y1="1" x2="25" y2="15" stroke="black" strokeWidth="4.5" strokeLinecap="round" />
@@ -309,7 +309,7 @@ export default function AboutUs() {
 
         {/* Overlay nav panel */}
         <div style={{
-          position: "fixed", inset: 0, zIndex: 12, padding: "0.5rem",
+          position: "fixed", inset: 0, zIndex: 1002, padding: "0.5rem",
           pointerEvents: menuOpen ? "auto" : "none",
           visibility: menuOpen ? "visible" : "hidden",
           transition: `visibility 0s ${menuOpen ? "0s" : "0.35s"}`,
