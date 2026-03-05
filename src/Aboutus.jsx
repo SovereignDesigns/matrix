@@ -33,8 +33,8 @@ const easeSmooth = "cubic-bezier(0.45, 0.02, 0.09, 0.98)";
 const f1Shadow = "0 0 5.2px 0 rgb(0 0 0/8%), 0 3.335px 3.335px 0 rgb(0 0 0/7%)";
 
 const NAV_LINKS = [
-  { label: "RX", sub: "Story & Experiences", href: "/maxfuelrx" },
-  { label: "Maxfuel RX", sub: "Expressions", href: "/maxfuel" },
+  { label: "RX", sub: "Story & Experiences", href: "/" },
+  { label: "Maxfuel", sub: "Expressions", href: "/maxfuel" },
   { label: "Contact Us", sub: "Sign Up", href: "/contact-us" },
 ];
 

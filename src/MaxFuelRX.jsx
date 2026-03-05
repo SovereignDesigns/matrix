@@ -11,6 +11,9 @@ import Video1 from "./assets/climat-4.mp4";
 import Video2 from "./assets/climat-5.mp4";
 import Video3 from "./assets/climat-6.mp4";
 import Team from "./assets/the~team.mp4";
+import Droplets from "./assets/droplets.mp4";
+import Droplets2 from "./assets/droplets2.mp4";
+import Droplets3 from "./assets/droplets1.mp4";
 import Theteam from "./assets/the~team.mp4";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Cheetah from "./assets/cheetah0.jpg";
@@ -1171,16 +1174,20 @@ export default function MaxfuelRX() {
                   overflow: "hidden",
                 }}
               >
-                <img
-                  src={sparkImage}
-                  alt="Matrix Petroleum RX"
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
                   style={{
                     width: "100%",
                     height: "100%",
                     objectFit: "cover",
                     display: "block",
                   }}
-                />
+                >
+                  <source src={Droplets2} type="video/mp4" />
+                </video>
               </div>
               <div style={{ textAlign: "center" }}>
                 <p
@@ -1469,16 +1476,22 @@ export default function MaxfuelRX() {
                   overflow: "hidden",
                 }}
               >
-                <img
-                  src={theme5}
-                  alt="Matrix Petroleum RX Benefits"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    display: "block",
-                  }}
-                />
+                <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                display: "block",
+              }}
+            >
+              <source src={Droplets} type="video/mp4" />
+            </video>
               </div>
               <div style={{ textAlign: "center" }}>
                 <div
