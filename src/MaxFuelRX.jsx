@@ -800,7 +800,7 @@ export default function MaxfuelRX() {
                 position: "absolute",
                 inset: 0,
                 width: "100%",
-                height: "100%",
+                height: "100vh",
                 objectFit: "cover",
                 display: "block",
               }}
