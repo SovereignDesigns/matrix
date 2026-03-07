@@ -835,6 +835,8 @@ export default function MaxfuelRX() {
                     textAlign: "center",
                     textTransform: "uppercase",
                     letterSpacing: "-0.1rem",
+                    maxWidth: "clamp(8rem, 90vw, 100%)",
+                    wordSpacing: "100vw",
                   }}
                 >
                   Visionary Fuel
@@ -849,6 +851,8 @@ export default function MaxfuelRX() {
                     textAlign: "center",
                     textTransform: "uppercase",
                     letterSpacing: "-0.1rem",
+                    maxWidth: "clamp(8rem, 90vw, 100%)",
+                    wordSpacing: "100vw",
                   }}
                 >
                   Timeless Tomorrow
