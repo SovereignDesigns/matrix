@@ -2,10 +2,10 @@ import { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Maxfuel from "./Maxfuel";
-import AboutUs from './Aboutus'
+import AboutUs from './Aboutus';
 import HeroVideo from "./assets/beerlines2.mp4";
 import Cheetah from "./assets/cheetah0.jpg";
-import MaxFuelRX from "./MaxfuelRX";
+import MaxFuelRX from "./MaxFuelRX";  
 gsap.registerPlugin(ScrollTrigger);
 
 // ─── Constants ────────────────────────────────────────────────────────────────
