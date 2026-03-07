@@ -543,8 +543,10 @@ export default function MaxfuelRX() {
         <nav
           style={{
             position: "fixed",
-            inset: "0 0 0 0",
-            zIndex: "var(--z-nav)",
+            top: "0.75rem",
+            left: 0,
+            right: 0,
+            zIndex: 10003,
             display: "flex",
             justifyContent: "center",
             pointerEvents: "none",
@@ -555,11 +557,9 @@ export default function MaxfuelRX() {
               position: "relative",
               width: "4.25rem",
               height: "1.5442rem",
-              margin: "0.75rem",
               borderRadius: "0.1875rem",
               boxShadow: f1Shadow,
               pointerEvents: "auto",
-              alignSelf: "flex-start",
             }}
           >
             <button
@@ -567,7 +567,6 @@ export default function MaxfuelRX() {
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               style={{
                 position: "relative",
-                zIndex: 1,
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
@@ -1072,7 +1071,7 @@ export default function MaxfuelRX() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
+              gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "repeat(2, 1fr)",
               gap: "1.5rem",
               padding: "0 1.5rem",
               alignItems: "center",
@@ -1451,7 +1450,7 @@ export default function MaxfuelRX() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
+              gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "repeat(2, 1fr)",
               gap: "1.5rem",
               padding: "0 1.5rem",
               alignItems: "center",

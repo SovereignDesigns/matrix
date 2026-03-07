@@ -280,23 +280,43 @@ export default function AboutUs() {
       }}>
 
         {/* ── OVERLAY NAV ── */}
-        <nav style={{
-          position: "fixed", inset: "0 0 0 0", zIndex: "var(--z-nav)",
-          display: "flex", justifyContent: "center", pointerEvents: "none",
-        }}>
-          <div style={{
-            position: "relative", width: "4.25rem", height: "1.5442rem",
-            margin: "0.75rem", borderRadius: "0.1875rem",
-            boxShadow: f1Shadow, pointerEvents: "auto", alignSelf: "flex-start",
-          }}>
+        <nav
+          style={{
+            position: "fixed",
+            top: "0.75rem",
+            left: 0,
+            right: 0,
+            zIndex: 10003,
+            display: "flex",
+            justifyContent: "center",
+            pointerEvents: "none",
+          }}
+        >
+          <div
+            style={{
+              position: "relative",
+              width: "4.25rem",
+              height: "1.5442rem",
+              borderRadius: "0.1875rem",
+              boxShadow: f1Shadow,
+              pointerEvents: "auto",
+            }}
+          >
             <button
               onClick={() => setMenuOpen((o) => !o)}
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               style={{
-                position: "relative", zIndex: 1, display: "flex",
-                flexDirection: "column", alignItems: "center", justifyContent: "center",
-                width: "100%", height: "100%", background: COLORS.white,
-                border: "none", borderRadius: "0.1875rem", cursor: "pointer",
+                position: "relative",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "100%",
+                height: "100%",
+                background: COLORS.white,
+                border: "none",
+                borderRadius: "0.1875rem",
+                cursor: "pointer",
                 transition: `scale 0.3s ${easeSmooth}`,
               }}
               onMouseEnter={(e) => (e.currentTarget.style.scale = "1.05")}
@@ -308,30 +328,46 @@ export default function AboutUs() {
         </nav>
 
         {/* Overlay nav panel */}
-        <div style={{
-          position: "fixed", inset: 0, zIndex: 1002, padding: "0.5rem",
-          pointerEvents: menuOpen ? "auto" : "none",
-          visibility: menuOpen ? "visible" : "hidden",
-          transition: `visibility 0s ${menuOpen ? "0s" : "0.35s"}`,
-        }}>
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 1002,
+            padding: "0.5rem",
+            pointerEvents: menuOpen ? "auto" : "none",
+            visibility: menuOpen ? "visible" : "hidden",
+            transition: `visibility 0s ${menuOpen ? "0s" : "0.35s"}`,
+          }}
+        >
           <div
             onClick={() => setMenuOpen(false)}
             style={{
-              position: "absolute", inset: 0, background: COLORS.black,
+              position: "absolute",
+              inset: 0,
+              background: COLORS.black,
               opacity: menuOpen ? 0.35 : 0,
               transition: `opacity 0.35s ${easeSmooth}`,
             }}
           />
-          <div style={{
-            position: "relative", display: "flex", flexDirection: "column",
-            gap: "4rem", margin: "0 auto", width: "100%", maxWidth: "23.5rem",
-            padding: "8.25rem 1.5rem 7.75rem", overflowY: "auto",
-            background: COLORS.white, borderRadius: "0.1875rem",
-            transform: menuOpen ? "translateY(0)" : "translateY(-1rem)",
-            opacity: menuOpen ? 1 : 0,
-            transition: `transform 0.35s ${easeSnappy}, opacity 0.3s ${easeSmooth}`,
-          }}>
-             {NAV_LINKS.map((link, i) => (
+          <div
+            style={{
+              position: "relative",
+              display: "flex",
+              flexDirection: "column",
+              gap: "4rem",
+              margin: "0 auto",
+              width: "100%",
+              maxWidth: "23.5rem",
+              padding: "8.25rem 1.5rem 7.75rem",
+              overflowY: "auto",
+              background: COLORS.white,
+              borderRadius: "0.1875rem",
+              transform: menuOpen ? "translateY(0)" : "translateY(-1rem)",
+              opacity: menuOpen ? 1 : 0,
+              transition: `transform 0.35s ${easeSnappy}, opacity 0.3s ${easeSmooth}`,
+            }}
+          >
+            {NAV_LINKS.map((link, i) => (
               <div
                 key={i}
                 style={{
@@ -353,13 +389,7 @@ export default function AboutUs() {
                   }}
                   onClick={() => {
                     setMenuOpen(false);
-                    pushDataLayer({
-                      event: "ctaClicks",
-                      ga_event: {
-                        category: "Internal CTA Clicks",
-                        action: link.label,
-                      },
-                    });
+                   
                   }}
                 >
                   <span
@@ -394,6 +424,7 @@ export default function AboutUs() {
             ))}
           </div>
         </div>
+
 
         {/* ── HERO ── */}
         <section style={{

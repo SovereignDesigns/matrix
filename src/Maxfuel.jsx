@@ -95,156 +95,150 @@ function SimpleNav({ menuOpen, setMenuOpen }) {
   return (
     <>
       <nav
-        style={{
-          position: "fixed",
-          inset: "0 0 0 0",
-          zIndex: 200,
-          display: "flex",
-          justifyContent: "center",
-          pointerEvents: "none",
-        }}
-      >
-        <div
           style={{
-            position: "relative",
-            width: "4.25rem",
-            height: "1.5442rem",
-            margin: "0.75rem",
-            borderRadius: "0.1875rem",
-            boxShadow: f1Shadow,
-            pointerEvents: "auto",
-            alignSelf: "flex-start",
+            position: "fixed",
+            top: "0.75rem",
+            left: 0,
+            right: 0,
+            zIndex: 10003,
+            display: "flex",
+            justifyContent: "center",
+            pointerEvents: "none",
           }}
         >
-          <button
-            onClick={() => setMenuOpen((o) => !o)}
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
+          <div
             style={{
               position: "relative",
-              zIndex: 1,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              width: "100%",
-              height: "100%",
-              background: COLORS.white,
-              border: "none",
+              width: "4.25rem",
+              height: "1.5442rem",
               borderRadius: "0.1875rem",
-              cursor: "pointer",
-              transition: "scale 0.3s " + easeSmooth,
+              boxShadow: f1Shadow,
+              pointerEvents: "auto",
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.scale = "1.05")}
-            onMouseLeave={(e) => (e.currentTarget.style.scale = "1")}
           >
-            <IconHamburger open={menuOpen} />
-          </button>
-        </div>
-      </nav>
+            <button
+              onClick={() => setMenuOpen((o) => !o)}
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              style={{
+                position: "relative",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "100%",
+                height: "100%",
+                background: COLORS.white,
+                border: "none",
+                borderRadius: "0.1875rem",
+                cursor: "pointer",
+                transition: `scale 0.3s ${easeSmooth}`,
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.scale = "1.05")}
+              onMouseLeave={(e) => (e.currentTarget.style.scale = "1")}
+            >
+              <IconHamburger open={menuOpen} />
+            </button>
+          </div>
+        </nav>
 
-      <div
-        style={{
-          position: "fixed",
-          inset: 0,
-          zIndex: 201,
-          padding: "0.5rem",
-          pointerEvents: menuOpen ? "auto" : "none",
-          visibility: menuOpen ? "visible" : "hidden",
-          transition: "visibility 0s " + (menuOpen ? "0s" : "0.35s"),
-        }}
-      >
+        {/* Overlay nav panel */}
         <div
-          onClick={() => setMenuOpen(false)}
           style={{
-            position: "absolute",
+            position: "fixed",
             inset: 0,
-            background: COLORS.black,
-            opacity: menuOpen ? 0.35 : 0,
-            transition: "opacity 0.35s " + easeSmooth,
-          }}
-        />
-        <div
-          style={{
-            position: "relative",
-            display: "flex",
-            flexDirection: "column",
-            gap: "4rem",
-            margin: "0 auto",
-            width: "100%",
-            maxWidth: "23.5rem",
-            padding: "8.25rem 1.5rem 7.75rem",
-            overflowY: "auto",
-            background: COLORS.white,
-            borderRadius: "0.1875rem",
-            transform: menuOpen ? "translateY(0)" : "translateY(-1rem)",
-            opacity: menuOpen ? 1 : 0,
-            transition:
-              "transform 0.35s " + easeSnappy + ", opacity 0.3s " + easeSmooth,
+            zIndex: 1002,
+            padding: "0.5rem",
+            pointerEvents: menuOpen ? "auto" : "none",
+            visibility: menuOpen ? "visible" : "hidden",
+            transition: `visibility 0s ${menuOpen ? "0s" : "0.35s"}`,
           }}
         >
-          {NAV_LINKS.map((link, i) => (
-            <div
-              key={i}
-              style={{
-                display: "grid",
-                placeItems: "center",
-                width: "100%",
-                maxWidth: "25ch",
-                margin: "0 auto",
-              }}
-            >
-              <a
-                href={link.href}
-                className="am-nav-item-link"
+          <div
+            onClick={() => setMenuOpen(false)}
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: COLORS.black,
+              opacity: menuOpen ? 0.35 : 0,
+              transition: `opacity 0.35s ${easeSmooth}`,
+            }}
+          />
+          <div
+            style={{
+              position: "relative",
+              display: "flex",
+              flexDirection: "column",
+              gap: "4rem",
+              margin: "0 auto",
+              width: "100%",
+              maxWidth: "23.5rem",
+              padding: "8.25rem 1.5rem 7.75rem",
+              overflowY: "auto",
+              background: COLORS.white,
+              borderRadius: "0.1875rem",
+              transform: menuOpen ? "translateY(0)" : "translateY(-1rem)",
+              opacity: menuOpen ? 1 : 0,
+              transition: `transform 0.35s ${easeSnappy}, opacity 0.3s ${easeSmooth}`,
+            }}
+          >
+            {NAV_LINKS.map((link, i) => (
+              <div
+                key={i}
                 style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "0.2rem",
-                  textDecoration: "none",
-                }}
-                onClick={() => {
-                  setMenuOpen(false);
-                  pushDataLayer({
-                    event: "ctaClicks",
-                    ga_event: {
-                      category: "Internal CTA Clicks",
-                      action: link.label,
-                    },
-                  });
+                  display: "grid",
+                  placeItems: "center",
+                  width: "100%",
+                  maxWidth: "25ch",
+                  margin: "0 auto",
                 }}
               >
-                <span
+                <a
+                  href={link.href}
+                  className="am-nav-item-link"
                   style={{
-                    fontFamily: FONTS.flare,
-                    fontSize: "0.875rem",
-                    fontWeight: 400,
-                    lineHeight: "140%",
-                    color: COLORS.black,
-                    textAlign: "center",
-                    textTransform: "uppercase",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "0.2rem",
+                    textDecoration: "none",
+                  }}
+                  onClick={() => {
+                    setMenuOpen(false);
+                   
                   }}
                 >
-                  {link.label}
-                </span>
-                <span
-                  style={{
-                    fontFamily: FONTS.agrandir,
-                    fontSize: "0.625rem",
-                    fontWeight: 400,
-                    lineHeight: "100%",
-                    color: COLORS.navSubtitle,
-                    textAlign: "center",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.0312rem",
-                  }}
-                >
-                  {link.sub}
-                </span>
-              </a>
-            </div>
-          ))}
+                  <span
+                    style={{
+                      fontFamily: FONTS.flare,
+                      fontSize: "0.875rem",
+                      fontWeight: 400,
+                      lineHeight: "140%",
+                      color: COLORS.black,
+                      textAlign: "center",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    {link.label}
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: FONTS.agrandir,
+                      fontSize: "0.625rem",
+                      fontWeight: 400,
+                      lineHeight: "100%",
+                      color: COLORS.navSubtitle,
+                      textAlign: "center",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.0312rem",
+                    }}
+                  >
+                    {link.sub}
+                  </span>
+                </a>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+
     </>
   );
 }
