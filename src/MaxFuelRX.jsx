@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { gsap } from "gsap";
 import Maxfuel from "./Maxfuel";
-import AboutUs from './Aboutus'
-import ContactUs from './Contactus'
+import AboutUs from "./Aboutus";
+import ContactUs from "./Contactus";
 import HeroVideo from "./assets/innovation.mp4";
 import HeroVideo1 from "./assets/beerlines2.mp4";
 import HeroVideo2 from "./assets/new-engine.mp4";
@@ -17,6 +17,7 @@ import Droplets3 from "./assets/droplets1.mp4";
 import Theteam from "./assets/the~team.mp4";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Cheetah from "./assets/cheetah0.jpg";
+import D3 from "./assets/d3.jpg";
 import sparkImage from "./assets/spark.png";
 import theme5 from "./assets/Theme5.jpg";
 import FlareFont from "./assets/fonts/02a1216b6c704030-s.p.woff";
@@ -28,20 +29,11 @@ import CasloFont from "./assets/fonts/9ee57a5762846d75-s.p.woff2";
 import FlaresFont from "./assets/fonts/a81f89e159e0486f-s.p.woff";
 import AgrandirsFont from "./assets/fonts/abff1420e55a5ceb-s.p.woff2";
 
-
 gsap.registerPlugin(ScrollTrigger);
 
 // ─── Constants ────────────────────────────────────────────────────────────────
-const IMG_PAST =
-  "https://images.ctfassets.net/53l6u5v24bqr/62r2Oi2rC5ReXcSzBonIld/c8a4d85796ffcd37ec01a8d2f01c6b43/AMF1_X_GLENFIDDICH_2025_9.jpg";
-const IMG_FUTURE =
-  "https://images.ctfassets.net/53l6u5v24bqr/1CC5DZRnbyOkl9BFByuj8q/380c99d75ca180f7e5bf9d3eaebcb791/AMR25_SHOT6_1x1__2_.jpg";
-const IMG_16YO =
-  "https://images.ctfassets.net/53l6u5v24bqr/2Xw8nFm72Pq1cQH8M5nkd8/57d8e477e20ca03f20da8e01e3aaa2a1/16.jpg";
-const IMG_19YO =
-  "https://images.ctfassets.net/53l6u5v24bqr/5mc3XjZIPySAjD0AWdzNYA/8912370269859d7e8878f4a3bdd253a0/19.jpg";
-const IMG_AMR26 =
-  "https://images.ctfassets.net/53l6u5v24bqr/6NZQ56rJT4rMtqXj84ySIl/fda0d6b5a3d3bcbd8dfe51bb53e7451a/v2AMR03338-2__2_.jpg";
+const IMG_PAST = Cheetah;
+const IMG_FUTURE = D3;
 
 const TIMELINE_TABS = ["Past", "Present", "Future"];
 const NEWSLETTER_BENEFITS = [
@@ -116,6 +108,32 @@ function pushDataLayer(payload) {
 
 // ─── Global styles ────────────────────────────────────────────────────────────
 const GLOBAL_STYLES = `
+@font-face {
+    font-family: "ASTON_MARTIN_FLARE";
+    src: url(${Fontflare}) format('woff2'),
+         url(${FlareFont}) format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "AGRANDIR";
+    src: url(${AgrandFont}) format('woff2'),
+         url(${AgrandirFont}) format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "CASLON_DORIC";
+    src: url(${CasloFont}) format('woff2'),
+         url(${CaslonFont}) format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
   :root {
     --font-flare:        "ASTON_MARTIN_FLARE", Arial, Helvetica, sans-serif;
@@ -220,7 +238,7 @@ const GLOBAL_STYLES = `
 
   #homepage-transition-asset {
     position: relative; overflow: hidden;
-    width: 100%; height: 100vh;
+  width: 100%; height: calc(100vh - 5rem);
   }
   #homepage-transition-asset-mask {
     position: absolute; inset: 0;
@@ -241,6 +259,33 @@ const GLOBAL_STYLES = `
   @media only screen and (min-width: 768px) {
     .am-hide-desktop { display: none !important; }
   }
+    @media (max-width: 767px) {
+  .hero-fit-text {
+    white-space: normal !important;
+    font-size: 14vw !important;
+    text-align: center;
+    line-height: 1 !important;
+  }
+}
+  .am-card-slide {
+  flex-shrink: 0;
+  width: calc(100vw - 3rem);
+  cursor: pointer;
+}
+@media (min-width: 768px) {
+  .am-card-slide {
+    width: 27.5vw;
+  }
+}
+
+.am-card-slider-track {
+  gap: 1.5rem;
+}
+@media (min-width: 768px) {
+  .am-card-slider-track {
+    gap: 10.63vw;
+  }
+}
 `;
 
 // ─── SVG icons ────────────────────────────────────────────────────────────────
@@ -262,19 +307,51 @@ const IconArrowDown = () => (
   </svg>
 );
 const IconHamburger = ({ open }) => (
- <svg width="30" height="14" viewBox="0 0 26 16" fill="none">
-  {open ? (
-    <>
-      <line x1="1" y1="1" x2="25" y2="15" stroke="black" strokeWidth="4.5" strokeLinecap="round" />
-      <line x1="1" y1="15" x2="25" y2="1" stroke="black" strokeWidth="4.5" strokeLinecap="round" />
-    </>
-  ) : (
-    <>
-      <line x1="1" y1="2" x2="25" y2="2" stroke="black" strokeWidth="2" strokeLinecap="round" />
-      <line x1="1" y1="12" x2="25" y2="12" stroke="black" strokeWidth="2" strokeLinecap="round" />
-    </>
-  )}
-</svg>
+  <svg width="30" height="14" viewBox="0 0 26 16" fill="none">
+    {open ? (
+      <>
+        <line
+          x1="1"
+          y1="1"
+          x2="25"
+          y2="15"
+          stroke="black"
+          strokeWidth="4.5"
+          strokeLinecap="round"
+        />
+        <line
+          x1="1"
+          y1="15"
+          x2="25"
+          y2="1"
+          stroke="black"
+          strokeWidth="4.5"
+          strokeLinecap="round"
+        />
+      </>
+    ) : (
+      <>
+        <line
+          x1="1"
+          y1="2"
+          x2="25"
+          y2="2"
+          stroke="black"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <line
+          x1="1"
+          y1="12"
+          x2="25"
+          y2="12"
+          stroke="black"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+      </>
+    )}
+  </svg>
 );
 const IconPlay = () => (
   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -282,7 +359,22 @@ const IconPlay = () => (
     <path d="M8 7l6 3-6 3V7z" fill="white" />
   </svg>
 );
-
+function useFitText(ref) {
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const fit = () => {
+      if (window.innerWidth <= 767) return; // CSS handles mobile
+      el.style.fontSize = "100px";
+      el.style.whiteSpace = "nowrap";
+      const newSize = Math.floor(100 * (window.innerWidth / el.scrollWidth));
+      el.style.fontSize = newSize + "px";
+    };
+    fit();
+    window.addEventListener("resize", fit);
+    return () => window.removeEventListener("resize", fit);
+  }, [ref]);
+}
 // ─── useDragScroll ────────────────────────────────────────────────────────────
 function useDragScroll(ref) {
   const drag = useRef({ active: false, startX: 0, scrollLeft: 0 });
@@ -346,8 +438,12 @@ export default function MaxfuelRX() {
   const hoverTimer = useRef(null);
   const cycleTimer = useRef(null);
   const activeTabRef = useRef(activeTab);
+  const heroLine1Ref = useRef(null);
+  const heroLine2Ref = useRef(null);
+  useFitText(heroLine1Ref);
+  useFitText(heroLine2Ref);
   activeTabRef.current = activeTab;
-
+  const [overlayView, setOverlayView] = useState(null);
   const slider1Ref = useRef(null);
   const slider2Ref = useRef(null);
   const slider1 = useDragScroll(slider1Ref);
@@ -535,7 +631,7 @@ export default function MaxfuelRX() {
           background: COLORS.white,
           color: COLORS.black,
           overflowX: "hidden",
-          maxWidth: "100vw",   
+          maxWidth: "100vw",
           WebkitFontSmoothing: "antialiased",
         }}
       >
@@ -738,10 +834,9 @@ export default function MaxfuelRX() {
                   className="am-timeline-item"
                   onClick={() => {
                     setActiveTab(i);
-                    pushDataLayer({
-                      event: "ctaClicks",
-                      ga_event: { category: "Timeline Nav", action: tab },
-                    });
+                    if (tab === "Past") setOverlayView("past");
+                    else if (tab === "Future") setOverlayView("future");
+                    else setOverlayView(null);
                   }}
                   onMouseEnter={() => {
                     if (hoverTimer.current) {
@@ -785,7 +880,7 @@ export default function MaxfuelRX() {
         <section
           id="homepage-transition-asset"
           data-section="section-present"
-          style={{ position: "relative", overflow: "hidden" }}   
+          style={{ position: "relative", overflow: "hidden" }}
         >
           <div
             id="homepage-transition-asset-mask"
@@ -800,7 +895,7 @@ export default function MaxfuelRX() {
                 position: "absolute",
                 inset: 0,
                 width: "100%",
-                height: "100vh",
+                height: "calc(100vh - 5rem)",
                 objectFit: "cover",
                 display: "block",
               }}
@@ -816,47 +911,114 @@ export default function MaxfuelRX() {
                   position: "absolute",
                   top: 0,
                   left: 0,
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "space-between",
                   width: "100%",
                   height: "100%",
-                  padding: "clamp(1rem, 5vh, 2rem) 2.5rem",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  padding: "2rem 0",
+                  overflow: "hidden",
                 }}
               >
                 <div
                   style={{
-                    fontFamily: FONTS.flareWoff,
-                    fontSize: "clamp(2rem, 11vw, 11vw)",
-                    fontWeight: 400,
-                    lineHeight: "90%",
-                    color: COLORS.f1LimeGreen,
-                    textAlign: "center",
-                    textTransform: "uppercase",
-                    letterSpacing: "-0.1rem",
-                    maxWidth: "clamp(8rem, 90vw, 100%)",
-                    wordSpacing: "100vw",
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                    padding: "1.5rem 1.5rem 2rem",
                   }}
                 >
-                  Visionary Fuel
+                  {/* TOP */}
+                  <div
+                    style={{
+                      width: "100%",
+                      overflow: "hidden",
+                      lineHeight: 0.92,
+                    }}
+                  >
+                    <div
+                      ref={heroLine1Ref}
+                      className="hero-fit-text"
+                      style={{
+                        fontFamily: FONTS.flare,
+                        fontWeight: 800,
+                        lineHeight: 0.92,
+                        color: COLORS.f1LimeGreen,
+                        textTransform: "uppercase",
+                        letterSpacing: "0.02em",
+                        whiteSpace: "nowrap",
+                        display: "inline-block",
+                        width: "100%",
+                        textAlign: "center",
+                      }}
+                    >
+                      Visionary Fuel
+                    </div>
+                  </div>
+
+                  {/* BOTTOM */}
+                  <div
+                    style={{
+                      width: "100%",
+                      overflow: "hidden",
+                      lineHeight: 0.92,
+                    }}
+                  >
+                    <div
+                      ref={heroLine2Ref}
+                      className="hero-fit-text"
+                      style={{
+                        fontFamily: FONTS.flare,
+                        fontWeight: 800,
+                        lineHeight: 0.92,
+                        color: COLORS.f1LimeGreen,
+                        textTransform: "uppercase",
+                        letterSpacing: "0.02em",
+                        whiteSpace: "nowrap",
+                        display: "inline-block",
+                        width: "100%",
+                        textAlign: "center",
+                        animation: "slideUp 0.9s ease-out forwards",
+                      }}
+                    >
+                      Timeless Tomorrow
+                    </div>
+                  </div>
                 </div>
-                <div
-                  style={{
-                    fontFamily: FONTS.flareWoff,
-                    fontSize: "clamp(1.25rem, 8vw, 8vw)",
-                    fontWeight: 400,
-                    lineHeight: "90%",
-                    color: COLORS.f1LimeGreen,
-                    textAlign: "center",
-                    textTransform: "uppercase",
-                    letterSpacing: "-0.1rem",
-                    maxWidth: "clamp(8rem, 90vw, 100%)",
-                    wordSpacing: "100vw",
-                  }}
-                >
-                  Timeless Tomorrow
-                </div>
+                <style>{`
+                  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(60px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-line {
+    font-family: var(--font-flare);
+    font-weight: 400;
+    line-height: 0.92;
+    color: #c6fd3a;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    width: 100%;
+    font-size: 19.5vw;
+    white-space: nowrap;
+  }
+  .hero-line-bottom {
+    animation: slideUp 0.9s ease-out forwards;
+  }
+  @media (max-width: 767px) {
+    .hero-line {
+      font-size: 16vw;
+      white-space: normal;
+      text-align: center;
+      line-height: 1;
+    }
+  }
+                `}</style>
               </div>
               <div
                 style={{
@@ -927,13 +1089,13 @@ export default function MaxfuelRX() {
             padding: "13rem 0",
             color: COLORS.white,
             background: COLORS.f1GreenDark,
-           maxWidth: "100%",   // ← ADD THIS
-           width: "100%",  
-           overflow: "hidden",
-           WebkitFontSmoothing: "antialiased",
-           MozOsxFontSmoothing: "grayscale",
-           MsFontSmoothing: "grayscale",
-           fontSmoothing: "antialiased",
+            maxWidth: "100%", // ← ADD THIS
+            width: "100%",
+            overflow: "hidden",
+            WebkitFontSmoothing: "antialiased",
+            MozOsxFontSmoothing: "grayscale",
+            MsFontSmoothing: "grayscale",
+            fontSmoothing: "antialiased",
           }}
         >
           <div
@@ -955,7 +1117,7 @@ export default function MaxfuelRX() {
                 textTransform: "uppercase",
               }}
             >
-             CRITICAL ASPECTS OF FUEL OPTIMIZATION
+              CRITICAL ASPECTS OF FUEL OPTIMIZATION
             </span>
             <button
               className="am-btn am-btn-light"
@@ -973,8 +1135,8 @@ export default function MaxfuelRX() {
 
           <div
             ref={slider1Ref}
-            className="am-slider"
-            style={{ gap: "10.63vw", padding: "0 1.5rem 4rem", cursor: "grab" }}
+            className="am-slider am-card-slider-track"
+            style={{ padding: "0 1.5rem 4rem", cursor: "grab" }}
             onPointerDown={slider1.onPointerDown}
             onPointerMove={slider1.onPointerMove}
             onPointerUp={slider1.onPointerUp}
@@ -983,85 +1145,82 @@ export default function MaxfuelRX() {
             {CARDS.map((card, i) => {
               const videos = [Video1, Video2, Video3];
               return (
-              <div
-                key={i}
-                className="am-card-link"
-                style={{
-                  flexShrink: 0,
-                  width: "min(80.36vw, 27.5vw)",
-                  cursor: "pointer",
-                }}
-              >
                 <div
-                  style={{
-                    position: "relative",
-                    width: "100%",
-                    aspectRatio: "272.61 / 444",
-                    background: COLORS.f1GreenDark,
-                    overflow: "hidden",
-                  }}
+                  key={i}
+                  className="am-card-link am-card-slide"
+                  style={{ cursor: "pointer" }}
                 >
-                  <video
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      display: "block",
-                      zIndex: 1,
-                    }}
-                  >
-                    <source src={videos[i]} type="video/mp4" />
-                  </video>
                   <div
                     style={{
-                      position: "absolute",
-                      inset: 0,
-                      background: `linear-gradient(180deg, ${COLORS.introBgTop}, ${COLORS.introBg})`,
-                      zIndex: 2,
-                      opacity: 0.6,
-                    }}
-                  />
-                </div>
-                <div style={{ marginTop: "1.5rem" }}>
-                  <span
-                    className="am-card-subtitle"
-                    style={{
-                      display: "block",
-                      fontFamily: FONTS.agrandir,
-                      fontSize: "0.625rem",
-                      fontWeight: 400,
-                      lineHeight: "100%",
-                      color: COLORS.white,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.0312rem",
+                      position: "relative",
+                      width: "100%",
+                      aspectRatio: "272.61 / 444",
+                      background: COLORS.f1GreenDark,
+                      overflow: "hidden",
                     }}
                   >
-                    {card.label}
-                  </span>
-                  <span
-                    className="am-card-title"
-                    style={{
-                      display: "block",
-                      marginTop: "0.25rem",
-                      fontFamily: FONTS.flare,
-                      fontSize: "1rem",
-                      fontWeight: 400,
-                      lineHeight: "150%",
-                      textTransform: "uppercase",
-                      color: COLORS.white,
-                    }}
-                  >
-                    {card.title}
-                  </span>
+                    <video
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        display: "block",
+                        zIndex: 1,
+                      }}
+                    >
+                      <source src={videos[i]} type="video/mp4" />
+                    </video>
+                    <div
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        background: `linear-gradient(180deg, ${COLORS.introBgTop}, ${COLORS.introBg})`,
+                        zIndex: 2,
+                        opacity: 0.6,
+                      }}
+                    />
+                  </div>
+                  <div style={{ marginTop: "1.5rem" }}>
+                    <span
+                      className="am-card-subtitle"
+                      style={{
+                        display: "block",
+                        fontFamily: FONTS.agrandir,
+                        fontSize: "0.625rem",
+                        fontWeight: 400,
+                        lineHeight: "100%",
+                        color: COLORS.white,
+                        textTransform: "uppercase",
+                        letterSpacing: "0.0312rem",
+                      }}
+                    >
+                      {card.label}
+                    </span>
+                    <span
+                      className="am-card-title"
+                      style={{
+                        display: "block",
+                        marginTop: "0.25rem",
+                        fontFamily: FONTS.flare,
+                        fontSize: "1rem",
+                        fontWeight: 400,
+                        lineHeight: "150%",
+                        textTransform: "uppercase",
+                        color: COLORS.white,
+                      }}
+                    >
+                      {card.title}
+                    </span>
+                  </div>
                 </div>
-              </div>
-            )})}
+              );
+            })}
             {/* Trailing spacer — ensures right padding is respected in overflow scroll */}
             <div
               style={{ flexShrink: 0, width: "1.5rem" }}
@@ -1075,12 +1234,13 @@ export default function MaxfuelRX() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "repeat(2, 1fr)",
+              gridTemplateColumns:
+                window.innerWidth < 768 ? "1fr" : "repeat(2, 1fr)",
               gap: "1.5rem",
               padding: "0 1.5rem",
               alignItems: "center",
-               maxWidth: "100%",   // ← ADD THIS
-               width: "100%",  
+              maxWidth: "100%", // ← ADD THIS
+              width: "100%",
             }}
           >
             <div
@@ -1269,7 +1429,7 @@ export default function MaxfuelRX() {
                 color: COLORS.f1GreenDark,
               }}
             >
-             Matrix Petroleum
+              Matrix Petroleum
             </p>
             <h2
               style={{
@@ -1324,10 +1484,10 @@ export default function MaxfuelRX() {
                 color: COLORS.f1GreenDark,
               }}
             >
-              MaxFuel RX is an elite precision engineered fuel
-                            crafted to deeply cleanse and sustain your diesel engine’s performance over the
-                            long haul. Its advanced formula goes beyond standard fuels, ensuring continuous
-                            protection that maximises efficiency and longevity. 
+              MaxFuel RX is an elite precision engineered fuel crafted to deeply
+              cleanse and sustain your diesel engine’s performance over the long
+              haul. Its advanced formula goes beyond standard fuels, ensuring
+              continuous protection that maximises efficiency and longevity.
             </p>
             <div style={{ margin: "2.02rem auto 0" }}>
               <button
@@ -1418,7 +1578,7 @@ export default function MaxfuelRX() {
                 marginBottom: "1rem",
               }}
             >
-              MAXFUEL RX  unveiled in South Africa
+              MAXFUEL RX unveiled in South Africa
             </h2>
             <p
               style={{
@@ -1431,7 +1591,10 @@ export default function MaxfuelRX() {
                 marginBottom: "1.48rem",
               }}
             >
-              Over time exhaust systems accumulate residue that reduces their effectiveness in filtering harmful gases. MaxFuel RX passively cleans these components, ensuring that exhaust systems operate at peak efficiency thereby significantly reducing emissions.
+              Over time exhaust systems accumulate residue that reduces their
+              effectiveness in filtering harmful gases. MaxFuel RX passively
+              cleans these components, ensuring that exhaust systems operate at
+              peak efficiency thereby significantly reducing emissions.
             </p>
             <div>
               <button
@@ -1454,12 +1617,13 @@ export default function MaxfuelRX() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "repeat(2, 1fr)",
+              gridTemplateColumns:
+                window.innerWidth < 768 ? "1fr" : "repeat(2, 1fr)",
               gap: "1.5rem",
               padding: "0 1.5rem",
               alignItems: "center",
-               maxWidth: "100%",   // ← ADD THIS
-               width: "100%",  
+              maxWidth: "100%", // ← ADD THIS
+              width: "100%",
             }}
           >
             <div
@@ -1480,21 +1644,21 @@ export default function MaxfuelRX() {
                 }}
               >
                 <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              style={{
-                position: "absolute",
-                inset: 0,
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                display: "block",
-              }}
-            >
-              <source src={Droplets} type="video/mp4" />
-            </video>
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    display: "block",
+                  }}
+                >
+                  <source src={Droplets} type="video/mp4" />
+                </video>
               </div>
               <div style={{ textAlign: "center" }}>
                 <div
@@ -1652,8 +1816,8 @@ export default function MaxfuelRX() {
 
           <div
             ref={slider2Ref}
-            className="am-slider"
-            style={{ gap: "10.63vw", padding: "0 1.5rem 4rem", cursor: "grab" }}
+            className="am-slider am-card-slider-track"
+            style={{ padding: "0 1.5rem 4rem", cursor: "grab" }}
             onPointerDown={slider2.onPointerDown}
             onPointerMove={slider2.onPointerMove}
             onPointerUp={slider2.onPointerUp}
@@ -1662,97 +1826,94 @@ export default function MaxfuelRX() {
             {EVENTS.map((ev, i) => {
               const eventVideos = [Theteam, Theteam, Theteam];
               return (
-              <div
-                key={i}
-                className="am-card-link"
-                style={{
-                  flexShrink: 0,
-                  width: "min(80.36vw, 27.5vw)",
-                  cursor: "pointer",
-                }}
-              >
                 <div
-                  style={{
-                    position: "relative",
-                    width: "100%",
-                    aspectRatio: "272.61 / 444",
-                    background: COLORS.f1GreenDark,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    overflow: "hidden",
-                  }}
+                  key={i}
+                  className="am-card-link am-card-slide"
+                  style={{ cursor: "pointer" }}
                 >
-                  <video
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      display: "block",
-                      zIndex: 1001,
-                    }}
-                  >
-                    <source src={eventVideos[i]} type="video/mp4" />
-                  </video>
                   <div
                     style={{
-                      position: "absolute",
-                      inset: 0,
-                      background: `linear-gradient(180deg, ${COLORS.introBgTop} ${i * 20}%, ${COLORS.introBg})`,
-                      zIndex: 2,
-                    }}
-                  />
-                  <button
-                    style={{
                       position: "relative",
-                      zIndex: 3,
-                      background: "none",
-                      border: "none",
-                      cursor: "pointer",
-                      padding: 0,
-                    }}
-                  />
-                </div>
-                <div style={{ marginTop: "1.5rem" }}>
-                  <span
-                    className="am-card-subtitle"
-                    style={{
-                      display: "block",
-                      fontFamily: FONTS.agrandir,
-                      fontSize: "0.625rem",
-                      fontWeight: 400,
-                      lineHeight: "100%",
-                      color: COLORS.white,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.0312rem",
+                      width: "100%",
+                      aspectRatio: "272.61 / 444",
+                      background: COLORS.f1GreenDark,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      overflow: "hidden",
                     }}
                   >
-                    {ev.sub}
-                  </span>
-                  <span
-                    className="am-card-title"
-                    style={{
-                      display: "block",
-                      marginTop: "0.25rem",
-                      fontFamily: FONTS.flare,
-                      fontSize: "1rem",
-                      fontWeight: 400,
-                      lineHeight: "150%",
-                      textTransform: "uppercase",
-                      color: COLORS.white,
-                    }}
-                  >
-                    {ev.title}
-                  </span>
+                    <video
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        display: "block",
+                        zIndex: 1001,
+                      }}
+                    >
+                      <source src={eventVideos[i]} type="video/mp4" />
+                    </video>
+                    <div
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        background: `linear-gradient(180deg, ${COLORS.introBgTop} ${i * 20}%, ${COLORS.introBg})`,
+                        zIndex: 2,
+                      }}
+                    />
+                    <button
+                      style={{
+                        position: "relative",
+                        zIndex: 3,
+                        background: "none",
+                        border: "none",
+                        cursor: "pointer",
+                        padding: 0,
+                      }}
+                    />
+                  </div>
+                  <div style={{ marginTop: "1.5rem" }}>
+                    <span
+                      className="am-card-subtitle"
+                      style={{
+                        display: "block",
+                        fontFamily: FONTS.agrandir,
+                        fontSize: "0.625rem",
+                        fontWeight: 400,
+                        lineHeight: "100%",
+                        color: COLORS.white,
+                        textTransform: "uppercase",
+                        letterSpacing: "0.0312rem",
+                      }}
+                    >
+                      {ev.sub}
+                    </span>
+                    <span
+                      className="am-card-title"
+                      style={{
+                        display: "block",
+                        marginTop: "0.25rem",
+                        fontFamily: FONTS.flare,
+                        fontSize: "1rem",
+                        fontWeight: 400,
+                        lineHeight: "150%",
+                        textTransform: "uppercase",
+                        color: COLORS.white,
+                      }}
+                    >
+                      {ev.title}
+                    </span>
+                  </div>
                 </div>
-              </div>
-            )})}
+              );
+            })}
             {/* Trailing spacer — ensures right padding is respected in overflow scroll */}
             <div
               style={{ flexShrink: 0, width: "1.5rem" }}
@@ -1869,6 +2030,68 @@ export default function MaxfuelRX() {
             </div>
           </div>
         </footer>
+        {/* ── PAST / FUTURE IMAGE OVERLAY ── */}
+        {overlayView && (
+          <div
+            style={{
+              position: "fixed",
+              inset: 0,
+              zIndex: 9999,
+              background: COLORS.black,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              setOverlayView(null);
+              setActiveTab(1); // return to Present
+            }}
+          >
+            <img
+              src={overlayView === "past" ? IMG_PAST : IMG_FUTURE}
+              alt={overlayView === "past" ? "Past" : "Future"}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                display: "block",
+              }}
+            />
+            {/* Label */}
+            <div
+              style={{
+                position: "absolute",
+                bottom: "6rem",
+                left: "1.5rem",
+                fontFamily: FONTS.flare,
+                fontSize: "clamp(2rem, 6vw, 4rem)",
+                color: COLORS.f1LimeGreen,
+                textTransform: "uppercase",
+                letterSpacing: "0.2rem",
+                pointerEvents: "none",
+              }}
+            >
+              {overlayView === "past" ? "The Past" : "The Future"}
+            </div>
+            {/* Close hint */}
+            <div
+              style={{
+                position: "absolute",
+                bottom: "4rem",
+                left: "1.5rem",
+                fontFamily: FONTS.agrandir,
+                fontSize: "0.625rem",
+                color: "rgba(255,255,255,0.6)",
+                textTransform: "uppercase",
+                letterSpacing: "0.05rem",
+                pointerEvents: "none",
+              }}
+            >
+              Tap anywhere to return
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
